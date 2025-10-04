@@ -1,33 +1,51 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-background">
-      <nav className="fixed top-0 w-full bg-primary/95 backdrop-blur-sm z-50 border-b border-accent/20">
-        <div className="container mx-auto px-6 py-4">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <nav
+        className={`fixed top-0 w-full z-50 transition-all duration-700 ${
+          scrolled
+            ? "bg-black/90 backdrop-blur-xl border-b border-accent/10"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="container mx-auto px-8 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#C9A961] to-[#8B7355] flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">M</span>
+            <div className="flex items-center gap-3 group cursor-pointer">
+              <div className="w-0.5 h-12 bg-gradient-to-b from-transparent via-accent to-transparent transition-all duration-500 group-hover:h-16" />
+              <div>
+                <div className="text-[11px] tracking-[0.3em] text-accent/80 uppercase font-light">
+                  Est. 1999
+                </div>
+                <h1 className="text-2xl tracking-[0.15em] text-foreground font-light">
+                  MAISON DE PIERRE
+                </h1>
               </div>
-              <h1 className="text-2xl font-bold text-primary-foreground tracking-wider">
-                MAISON DE PIERRE
-              </h1>
             </div>
-            <div className="hidden md:flex items-center gap-8">
-              {["Главная", "О бренде", "Материалы", "Технологии", "Контакт"].map((item) => (
+            <div className="hidden lg:flex items-center gap-12">
+              {["Коллекции", "Технологии", "Философия", "Проекты", "Контакт"].map((item, idx) => (
                 <button
                   key={item}
-                  onClick={() => setActiveSection(item.toLowerCase())}
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors relative group text-sm tracking-wide"
+                  onClick={() => setActiveSection(idx)}
+                  className="relative text-[11px] tracking-[0.25em] text-foreground/60 hover:text-foreground transition-all duration-500 uppercase font-light group"
                 >
                   {item}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent group-hover:w-full transition-all duration-700" />
                 </button>
               ))}
             </div>
@@ -35,252 +53,367 @@ const Index = () => {
         </div>
       </nav>
 
-      <section className="relative h-screen flex items-center justify-center overflow-hidden pt-20">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/img/709a65a5-9076-4bed-97a8-a8700f3813e8.jpg')",
-            filter: "brightness(0.4)"
-          }}
-        />
-        <div className="relative z-10 text-center px-6 animate-fade-in">
-          <h2 className="text-7xl md:text-9xl font-bold text-primary-foreground mb-6 tracking-tight">
-            MAISON DE PIERRE
-          </h2>
-          <p className="text-2xl md:text-3xl text-gradient-gold font-light mb-8 italic tracking-wide">
-            Où le luxe rencontre l'innovation
-          </p>
-          <p className="text-xl text-primary-foreground/90 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Эксклюзивные строительные материалы премиум-класса для самых взыскательных проектов
-          </p>
-          <Button
-            size="lg"
-            className="bg-accent hover:bg-accent/90 text-primary px-12 py-6 text-lg font-semibold tracking-wider transition-all hover:scale-105"
-          >
-            Исследовать коллекцию
-          </Button>
+      <section className="relative h-screen flex items-center justify-center">
+        <div className="absolute inset-0 bg-black">
+          <img
+            src="/img/709a65a5-9076-4bed-97a8-a8700f3813e8.jpg"
+            alt="Luxury materials"
+            className="w-full h-full object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black" />
         </div>
-      </section>
 
-      <section className="py-32 bg-card">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="animate-slide-up">
-              <div className="text-sm tracking-widest text-accent mb-4 uppercase">О бренде</div>
-              <h3 className="text-5xl font-bold text-foreground mb-6 leading-tight">
-                Философия совершенства
-              </h3>
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                Maison de Pierre — это не просто поставщик строительных материалов. Это философия,
-                где каждый элемент создан для воплощения вашей мечты о безупречном пространстве.
-              </p>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Мы тщательно отбираем материалы со всего мира, сотрудничая только с мастерами,
-                которые разделяют нашу страсть к качеству и инновациям.
-              </p>
-              <div className="grid grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-accent mb-2">25+</div>
-                  <div className="text-sm text-muted-foreground uppercase tracking-wide">
-                    Лет опыта
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-accent mb-2">200+</div>
-                  <div className="text-sm text-muted-foreground uppercase tracking-wide">
-                    Материалов
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-accent mb-2">100%</div>
-                  <div className="text-sm text-muted-foreground uppercase tracking-wide">
-                    Премиум
-                  </div>
-                </div>
+        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+          <div className="mb-12 animate-fade-in">
+            <div className="inline-block">
+              <div className="text-[10px] tracking-[0.4em] text-accent mb-6 uppercase font-light luxury-line">
+                Depuis 1999
               </div>
             </div>
-            <div className="relative h-[600px] animate-scale-in">
-              <img
-                src="/img/009006cb-e8db-4011-bf6f-04d36ffb74de.jpg"
-                alt="Premium materials"
-                className="w-full h-full object-cover shadow-2xl"
-              />
-              <div className="absolute inset-0 border-4 border-accent/30 -translate-x-4 -translate-y-4"></div>
+          </div>
+          
+          <h2 className="text-[clamp(3rem,10vw,9rem)] leading-[0.9] font-light tracking-[0.08em] text-foreground mb-8 animate-fade-in">
+            MAISON
+            <br />
+            <span className="text-gradient-gold">DE PIERRE</span>
+          </h2>
+
+          <p className="text-lg tracking-[0.15em] text-foreground/70 mb-16 max-w-2xl mx-auto font-light leading-relaxed animate-slide-up">
+            Où l'excellence architecturale rencontre l'innovation intemporelle
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-scale-in">
+            <Button
+              size="lg"
+              className="bg-transparent border border-accent/40 hover:border-accent hover:bg-accent/5 text-foreground px-14 py-7 text-xs tracking-[0.3em] uppercase font-light transition-all duration-500 hover:shadow-[0_0_30px_rgba(201,169,97,0.15)]"
+            >
+              Explorer
+            </Button>
+            <button className="text-xs tracking-[0.3em] text-foreground/60 hover:text-accent uppercase font-light transition-all duration-500 flex items-center gap-3 group">
+              Découvrir
+              <Icon name="ArrowRight" size={16} className="group-hover:translate-x-1 transition-transform duration-500" />
+            </button>
+          </div>
+        </div>
+
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-px h-16 bg-gradient-to-b from-accent/60 to-transparent" />
+        </div>
+      </section>
+
+      <section className="py-40 bg-secondary/30 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[100px]" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-[100px]" />
+        </div>
+
+        <div className="container mx-auto px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-24 items-center">
+            <div className="space-y-8">
+              <div>
+                <div className="text-[10px] tracking-[0.4em] text-accent mb-6 uppercase font-light luxury-line inline-block">
+                  Notre Vision
+                </div>
+                <h3 className="text-6xl leading-tight font-light tracking-[0.05em] text-foreground mb-8">
+                  L'art de bâtir
+                  <br />
+                  <span className="text-gradient-gold">l'éternité</span>
+                </h3>
+              </div>
+
+              <div className="space-y-6">
+                <p className="text-base leading-loose text-foreground/60 font-light tracking-wide">
+                  Depuis plus d'un quart de siècle, Maison de Pierre incarne l'excellence dans la sélection 
+                  de matériaux architecturaux d'exception. Chaque pierre, chaque pigment est choisi avec la 
+                  précision d'un joaillier.
+                </p>
+                <p className="text-base leading-loose text-foreground/60 font-light tracking-wide">
+                  Nous ne vendons pas des matériaux. Nous offrons des fragments d'éternité, 
+                  destinés aux projets qui transcendent les époques.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-3 gap-8 pt-12 border-t border-accent/10">
+                {[
+                  { value: "25+", label: "Années d'excellence" },
+                  { value: "∞", label: "Qualité intemporelle" },
+                  { value: "100%", label: "Sur mesure" }
+                ].map((stat, idx) => (
+                  <div key={idx} className="text-center group cursor-pointer">
+                    <div className="text-5xl font-light text-accent mb-3 group-hover:scale-110 transition-transform duration-500">
+                      {stat.value}
+                    </div>
+                    <div className="text-[10px] tracking-[0.2em] text-foreground/50 uppercase font-light">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl" />
+              <div className="relative overflow-hidden">
+                <img
+                  src="/img/009006cb-e8db-4011-bf6f-04d36ffb74de.jpg"
+                  alt="Premium materials"
+                  className="w-full h-[700px] object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                />
+                <div className="absolute inset-0 border border-accent/20 group-hover:border-accent/40 transition-colors duration-700" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-32 bg-muted/30">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="text-sm tracking-widest text-accent mb-4 uppercase">Наши категории</div>
-            <h3 className="text-5xl font-bold text-foreground mb-6">Премиум материалы</h3>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Каждая категория представляет собой вершину качества и эстетики
-            </p>
+      <section className="py-40 bg-black relative">
+        <div className="container mx-auto px-8">
+          <div className="text-center mb-24">
+            <div className="text-[10px] tracking-[0.4em] text-accent mb-6 uppercase font-light luxury-line inline-block">
+              Collections Exclusives
+            </div>
+            <h3 className="text-6xl font-light tracking-[0.05em] text-foreground mb-6">
+              Matériaux d'exception
+            </h3>
+            <div className="w-24 h-px bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mt-8" />
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+
+          <div className="grid md:grid-cols-3 gap-1">
             {[
               {
                 icon: "Gem",
-                title: "Натуральный камень",
-                description: "Мрамор, гранит и эксклюзивные породы из лучших карьеров мира"
+                title: "Pierres naturelles",
+                subtitle: "Carrara · Calacatta · Statuario",
+                desc: "Marbres et granits extraits des carrières les plus prestigieuses du monde"
+              },
+              {
+                icon: "Droplets",
+                title: "Peintures innovantes",
+                subtitle: "Technologie NanoShield™",
+                desc: "Formulations révolutionnaires avec garantie de performance 50+ ans"
               },
               {
                 icon: "Palette",
-                title: "Инновационные краски",
-                description: "Технология нового поколения с микрокапсулами и защитой 50+ лет"
-              },
-              {
-                icon: "Brush",
-                title: "Декоративные покрытия",
-                description: "Венецианская штукатурка и эксклюзивные текстуры ручной работы"
+                title: "Finitions d'art",
+                subtitle: "Stucco Veneziano · Tadelakt",
+                desc: "Techniques ancestrales réinventées par nos maîtres artisans"
               }
-            ].map((item, index) => (
+            ].map((item, idx) => (
               <Card
-                key={index}
-                className="p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-accent/20 bg-card"
+                key={idx}
+                className="bg-secondary/20 border-0 p-12 hover:bg-secondary/30 transition-all duration-700 group cursor-pointer relative overflow-hidden"
               >
-                <div className="w-16 h-16 bg-accent/10 flex items-center justify-center mb-6">
-                  <Icon name={item.icon} size={32} className="text-accent" />
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
+                
+                <div className="mb-8 relative">
+                  <div className="w-20 h-20 border border-accent/20 flex items-center justify-center group-hover:border-accent/40 transition-colors duration-700 group-hover:rotate-45 transition-transform">
+                    <Icon name={item.icon} size={32} className="text-accent group-hover:-rotate-45 transition-transform duration-700" />
+                  </div>
                 </div>
-                <h4 className="text-2xl font-bold mb-4 text-foreground">{item.title}</h4>
-                <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-2xl font-light tracking-[0.08em] text-foreground mb-2">
+                      {item.title}
+                    </h4>
+                    <div className="text-[10px] tracking-[0.25em] text-accent uppercase font-light">
+                      {item.subtitle}
+                    </div>
+                  </div>
+                  <p className="text-sm leading-relaxed text-foreground/50 font-light tracking-wide">
+                    {item.desc}
+                  </p>
+                </div>
+
+                <div className="mt-8 flex items-center text-[10px] tracking-[0.3em] text-accent uppercase font-light group-hover:tracking-[0.35em] transition-all duration-500">
+                  En savoir plus
+                  <Icon name="ArrowRight" size={14} className="ml-2 group-hover:translate-x-2 transition-transform duration-500" />
+                </div>
               </Card>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-32 bg-card">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="relative h-[500px] order-2 md:order-1">
-              <img
-                src="/img/008411f8-a6b8-4270-a572-db8475b51c55.jpg"
-                alt="Innovative paint technology"
-                className="w-full h-full object-cover shadow-2xl"
-              />
+      <section className="py-40 bg-secondary/20 relative overflow-hidden">
+        <div className="container mx-auto px-8">
+          <div className="grid lg:grid-cols-2 gap-24 items-center">
+            <div className="relative order-2 lg:order-1 group">
+              <div className="relative overflow-hidden">
+                <img
+                  src="/img/008411f8-a6b8-4270-a572-db8475b51c55.jpg"
+                  alt="Innovation"
+                  className="w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute inset-0 border border-accent/20 group-hover:border-accent/40 transition-colors duration-700" />
+              </div>
+              <div className="absolute -bottom-8 -right-8 w-64 h-64 border border-accent/10 pointer-events-none" />
             </div>
-            <div className="order-1 md:order-2">
-              <div className="text-sm tracking-widest text-accent mb-4 uppercase">Инновации</div>
-              <h3 className="text-5xl font-bold text-foreground mb-6 leading-tight">
-                Технология будущего
-              </h3>
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                Наши краски премиум-класса созданы с использованием революционной технологии
-                микрокапсулирования пигментов.
+
+            <div className="space-y-8 order-1 lg:order-2">
+              <div>
+                <div className="text-[10px] tracking-[0.4em] text-accent mb-6 uppercase font-light luxury-line inline-block">
+                  Innovation
+                </div>
+                <h3 className="text-6xl leading-tight font-light tracking-[0.05em] text-foreground mb-8">
+                  La science au service
+                  <br />
+                  <span className="text-gradient-gold">de la beauté</span>
+                </h3>
+              </div>
+
+              <p className="text-base leading-loose text-foreground/60 font-light tracking-wide">
+                Nos peintures intègrent la technologie NanoShield™ : une révolution silencieuse 
+                qui garantit une protection optimale pendant plus d'un demi-siècle.
               </p>
-              <div className="space-y-4 mb-8">
+
+              <div className="space-y-6 pt-8">
                 {[
                   {
                     icon: "Shield",
-                    title: "Защита 50+ лет",
-                    desc: "Стойкость к УФ и атмосферным воздействиям"
-                  },
-                  {
-                    icon: "Droplet",
-                    title: "Самоочищение",
-                    desc: "Нанотехнология отталкивания загрязнений"
+                    title: "Protection ultime",
+                    desc: "Résistance UV · Hydrofuge · Anti-pollution"
                   },
                   {
                     icon: "Sparkles",
-                    title: "Глубина цвета",
-                    desc: "Уникальная насыщенность и переливы"
+                    title: "Pigments purs",
+                    desc: "Couleurs authentiques sans altération dans le temps"
+                  },
+                  {
+                    icon: "Leaf",
+                    title: "Éco-responsable",
+                    desc: "Formulations à base d'ingrédients naturels certifiés"
                   }
-                ].map((feature, index) => (
-                  <div key={index} className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-accent/10 flex items-center justify-center flex-shrink-0">
-                      <Icon name={feature.icon} size={24} className="text-accent" />
+                ].map((feature, idx) => (
+                  <div key={idx} className="flex items-start gap-6 group cursor-pointer">
+                    <div className="w-14 h-14 border border-accent/20 flex items-center justify-center flex-shrink-0 group-hover:border-accent/60 transition-colors duration-500">
+                      <Icon name={feature.icon} size={20} className="text-accent" />
                     </div>
-                    <div>
-                      <div className="font-bold text-foreground mb-1">{feature.title}</div>
-                      <div className="text-sm text-muted-foreground">{feature.desc}</div>
+                    <div className="pt-1">
+                      <div className="text-lg font-light tracking-[0.08em] text-foreground mb-2">
+                        {feature.title}
+                      </div>
+                      <div className="text-xs tracking-wide text-foreground/50 font-light">
+                        {feature.desc}
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-40 bg-black relative">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/30 rounded-full blur-[150px]" />
+        </div>
+        
+        <div className="container mx-auto px-8 text-center relative z-10">
+          <div className="max-w-3xl mx-auto space-y-12">
+            <div>
+              <div className="text-[10px] tracking-[0.4em] text-accent mb-8 uppercase font-light luxury-line inline-block">
+                Rejoignez l'excellence
+              </div>
+              <h3 className="text-6xl leading-tight font-light tracking-[0.05em] text-foreground mb-8">
+                Créons ensemble
+                <br />
+                <span className="text-gradient-gold">votre chef-d'œuvre</span>
+              </h3>
+            </div>
+
+            <p className="text-base leading-loose text-foreground/60 font-light tracking-wide max-w-2xl mx-auto">
+              Nos experts sont à votre disposition pour une consultation personnalisée 
+              et vous accompagner dans la réalisation de vos projets les plus ambitieux.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8">
               <Button
-                variant="outline"
-                className="border-accent text-accent hover:bg-accent hover:text-primary px-8 py-5 text-base tracking-wide"
+                size="lg"
+                className="bg-accent hover:bg-accent/90 text-black px-16 py-7 text-xs tracking-[0.3em] uppercase font-light transition-all duration-500 hover:shadow-[0_0_40px_rgba(201,169,97,0.3)]"
               >
-                Подробнее о технологии
+                Prendre rendez-vous
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="bg-transparent border border-accent/40 hover:border-accent hover:bg-accent/5 text-foreground px-16 py-7 text-xs tracking-[0.3em] uppercase font-light transition-all duration-500"
+              >
+                Catalogue 2024
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-32 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-6 text-center">
-          <h3 className="text-5xl font-bold mb-6">Создайте своё совершенство</h3>
-          <p className="text-xl mb-12 max-w-2xl mx-auto opacity-90">
-            Свяжитесь с нашими экспертами для индивидуальной консультации
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-primary px-12 py-6 text-lg font-semibold tracking-wider"
-            >
-              Записаться на консультацию
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary px-12 py-6 text-lg font-semibold tracking-wider"
-            >
-              Скачать каталог
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <footer className="bg-primary/95 text-primary-foreground py-16 border-t border-accent/20">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            <div>
-              <h4 className="text-xl font-bold mb-6 tracking-wider">MAISON DE PIERRE</h4>
-              <p className="text-sm opacity-80 leading-relaxed">
-                Эксклюзивные материалы для создания пространств вашей мечты
+      <footer className="bg-black border-t border-accent/10 py-20">
+        <div className="container mx-auto px-8">
+          <div className="grid md:grid-cols-4 gap-16 mb-16">
+            <div className="space-y-6">
+              <div>
+                <div className="text-[10px] tracking-[0.3em] text-accent/60 uppercase font-light mb-2">
+                  Est. 1999
+                </div>
+                <h4 className="text-xl tracking-[0.15em] text-foreground font-light">
+                  MAISON DE PIERRE
+                </h4>
+              </div>
+              <p className="text-xs leading-relaxed text-foreground/40 font-light tracking-wide">
+                L'excellence architecturale depuis plus de 25 ans
               </p>
             </div>
-            <div>
-              <h5 className="font-semibold mb-4 tracking-wide">Категории</h5>
-              <ul className="space-y-2 text-sm opacity-80">
-                <li className="hover:opacity-100 cursor-pointer transition-opacity">
-                  Натуральный камень
-                </li>
-                <li className="hover:opacity-100 cursor-pointer transition-opacity">Краски</li>
-                <li className="hover:opacity-100 cursor-pointer transition-opacity">
-                  Декоративные покрытия
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="font-semibold mb-4 tracking-wide">Компания</h5>
-              <ul className="space-y-2 text-sm opacity-80">
-                <li className="hover:opacity-100 cursor-pointer transition-opacity">О нас</li>
-                <li className="hover:opacity-100 cursor-pointer transition-opacity">Проекты</li>
-                <li className="hover:opacity-100 cursor-pointer transition-opacity">Контакты</li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="font-semibold mb-4 tracking-wide">Контакты</h5>
-              <div className="space-y-3 text-sm opacity-80">
-                <div className="flex items-center gap-2">
-                  <Icon name="Mail" size={16} />
-                  <span>info@maisondepierre.com</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="Phone" size={16} />
-                  <span>+7 (495) 123-45-67</span>
-                </div>
+
+            {[
+              {
+                title: "Collections",
+                items: ["Pierres naturelles", "Peintures", "Finitions", "Sur mesure"]
+              },
+              {
+                title: "Entreprise",
+                items: ["Notre histoire", "Philosophie", "Projets", "Carrières"]
+              },
+              {
+                title: "Contact",
+                items: ["Paris · London · Milano", "+33 1 00 00 00 00", "contact@maisondepierre.fr"]
+              }
+            ].map((section, idx) => (
+              <div key={idx} className="space-y-6">
+                <h5 className="text-[10px] tracking-[0.3em] text-foreground uppercase font-light">
+                  {section.title}
+                </h5>
+                <ul className="space-y-3">
+                  {section.items.map((item, i) => (
+                    <li
+                      key={i}
+                      className="text-xs text-foreground/40 hover:text-accent cursor-pointer transition-colors duration-300 font-light tracking-wide"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="pt-12 border-t border-accent/10">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+              <p className="text-[10px] tracking-[0.2em] text-foreground/30 uppercase font-light">
+                © MMXXIV Maison de Pierre. Tous droits réservés.
+              </p>
+              <div className="flex items-center gap-8">
+                {["Instagram", "LinkedIn", "Pinterest"].map((social) => (
+                  <button
+                    key={social}
+                    className="text-[10px] tracking-[0.2em] text-foreground/30 hover:text-accent uppercase font-light transition-colors duration-300"
+                  >
+                    {social}
+                  </button>
+                ))}
               </div>
             </div>
-          </div>
-          <div className="border-t border-primary-foreground/20 pt-8 text-center text-sm opacity-70">
-            © 2024 Maison de Pierre. Все права защищены.
           </div>
         </div>
       </footer>

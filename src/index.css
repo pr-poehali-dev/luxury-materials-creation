@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Cormorant:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,36 +6,36 @@
 
 @layer base {
   :root {
-    --background: 39 20% 91%;
-    --foreground: 30 10% 10%;
+    --background: 40 15% 97%;
+    --foreground: 0 0% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 30 10% 10%;
+    --card-foreground: 0 0% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 30 10% 10%;
+    --popover-foreground: 0 0% 8%;
 
-    --primary: 30 10% 10%;
-    --primary-foreground: 39 20% 91%;
+    --primary: 0 0% 8%;
+    --primary-foreground: 40 15% 97%;
 
-    --secondary: 39 45% 58%;
-    --secondary-foreground: 30 10% 10%;
+    --secondary: 38 50% 62%;
+    --secondary-foreground: 0 0% 8%;
 
-    --muted: 39 15% 85%;
-    --muted-foreground: 30 8% 40%;
+    --muted: 40 10% 92%;
+    --muted-foreground: 0 0% 35%;
 
-    --accent: 39 45% 58%;
-    --accent-foreground: 30 10% 10%;
+    --accent: 38 50% 62%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 39 15% 85%;
-    --input: 39 15% 85%;
-    --ring: 39 45% 58%;
+    --border: 40 8% 88%;
+    --input: 40 8% 88%;
+    --ring: 38 50% 62%;
 
-    --gold: 39 45% 58%;
-    --bronze: 30 25% 45%;
+    --gold: 38 50% 62%;
+    --cream: 40 15% 97%;
 
     --radius: 0rem;
 
@@ -101,8 +101,9 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: "Cormorant", serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.02em;
   }
 
   h1,
@@ -111,12 +112,35 @@
   h4,
   h5,
   h6 {
-    font-family: "Playfair Display", serif;
+    font-family: "Cormorant Garamond", serif;
+    letter-spacing: 0.03em;
   }
 }
 
 @layer utilities {
   .text-gradient-gold {
     @apply bg-gradient-to-r from-[#C9A961] via-[#F4E4C1] to-[#C9A961] bg-clip-text text-transparent;
+  }
+
+  .luxury-border {
+    position: relative;
+  }
+
+  .luxury-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      #c9a961 0%,
+      transparent 50%,
+      #c9a961 100%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
   }
 }

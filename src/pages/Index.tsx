@@ -1,32 +1,45 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
+  const philosophyRef = useRef<HTMLElement>(null);
+  const collectionsRef = useRef<HTMLElement>(null);
+  const innovationRef = useRef<HTMLElement>(null);
+  const contactRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      setScrollY(window.scrollY);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
+    ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <nav
         className={`fixed top-0 w-full z-50 transition-all duration-700 ${
           scrolled
-            ? "bg-black/90 backdrop-blur-xl border-b border-accent/10"
+            ? "bg-black/95 backdrop-blur-xl border-b border-accent/10"
             : "bg-transparent"
         }`}
       >
         <div className="container mx-auto px-8 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3 group cursor-pointer">
+            <div 
+              onClick={() => scrollToSection(heroRef)}
+              className="flex items-center gap-3 group cursor-pointer"
+            >
               <div className="w-0.5 h-12 bg-gradient-to-b from-transparent via-accent to-transparent transition-all duration-500 group-hover:h-16" />
               <div>
                 <div className="text-[11px] tracking-[0.3em] text-accent/80 uppercase font-light">
@@ -38,13 +51,19 @@ const Index = () => {
               </div>
             </div>
             <div className="hidden lg:flex items-center gap-12">
-              {["Коллекции", "Технологии", "Философия", "Проекты", "Контакт"].map((item, idx) => (
+              {[
+                { name: "Accueil", ref: heroRef },
+                { name: "Philosophie", ref: philosophyRef },
+                { name: "Collections", ref: collectionsRef },
+                { name: "Innovation", ref: innovationRef },
+                { name: "Contact", ref: contactRef }
+              ].map((item) => (
                 <button
-                  key={item}
-                  onClick={() => setActiveSection(idx)}
+                  key={item.name}
+                  onClick={() => scrollToSection(item.ref)}
                   className="relative text-[11px] tracking-[0.25em] text-foreground/60 hover:text-foreground transition-all duration-500 uppercase font-light group"
                 >
-                  {item}
+                  {item.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent group-hover:w-full transition-all duration-700" />
                 </button>
               ))}
@@ -53,8 +72,13 @@ const Index = () => {
         </div>
       </nav>
 
-      <section className="relative h-screen flex items-center justify-center">
-        <div className="absolute inset-0 bg-black">
+      <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-black"
+          style={{
+            transform: `translateY(${scrollY * 0.5}px)`,
+          }}
+        >
           <img
             src="/img/709a65a5-9076-4bed-97a8-a8700f3813e8.jpg"
             alt="Luxury materials"
@@ -63,7 +87,13 @@ const Index = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black" />
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+        <div 
+          className="relative z-10 text-center px-6 max-w-5xl mx-auto"
+          style={{
+            transform: `translateY(${scrollY * 0.2}px)`,
+            opacity: 1 - scrollY / 600,
+          }}
+        >
           <div className="mb-12 animate-fade-in">
             <div className="inline-block">
               <div className="text-[10px] tracking-[0.4em] text-accent mb-6 uppercase font-light luxury-line">
@@ -85,26 +115,43 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-scale-in">
             <Button
               size="lg"
+              onClick={() => scrollToSection(collectionsRef)}
               className="bg-transparent border border-accent/40 hover:border-accent hover:bg-accent/5 text-foreground px-14 py-7 text-xs tracking-[0.3em] uppercase font-light transition-all duration-500 hover:shadow-[0_0_30px_rgba(201,169,97,0.15)]"
             >
               Explorer
             </Button>
-            <button className="text-xs tracking-[0.3em] text-foreground/60 hover:text-accent uppercase font-light transition-all duration-500 flex items-center gap-3 group">
+            <button 
+              onClick={() => scrollToSection(philosophyRef)}
+              className="text-xs tracking-[0.3em] text-foreground/60 hover:text-accent uppercase font-light transition-all duration-500 flex items-center gap-3 group"
+            >
               Découvrir
               <Icon name="ArrowRight" size={16} className="group-hover:translate-x-1 transition-transform duration-500" />
             </button>
           </div>
         </div>
 
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
+        <button
+          onClick={() => scrollToSection(philosophyRef)}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer hover:scale-110 transition-transform"
+        >
           <div className="w-px h-16 bg-gradient-to-b from-accent/60 to-transparent" />
-        </div>
+        </button>
       </section>
 
-      <section className="py-40 bg-secondary/30 relative overflow-hidden">
+      <section ref={philosophyRef} className="py-40 bg-secondary/30 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[100px]" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-[100px]" />
+          <div 
+            className="absolute top-0 left-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[100px]"
+            style={{
+              transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.05}px)`,
+            }}
+          />
+          <div 
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-[100px]"
+            style={{
+              transform: `translate(${-scrollY * 0.1}px, ${-scrollY * 0.05}px)`,
+            }}
+          />
         </div>
 
         <div className="container mx-auto px-8 relative z-10">
@@ -153,7 +200,12 @@ const Index = () => {
 
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl" />
-              <div className="relative overflow-hidden">
+              <div 
+                className="relative overflow-hidden"
+                style={{
+                  transform: `translateY(${(scrollY - 800) * -0.1}px)`,
+                }}
+              >
                 <img
                   src="/img/009006cb-e8db-4011-bf6f-04d36ffb74de.jpg"
                   alt="Premium materials"
@@ -166,7 +218,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-40 bg-black relative">
+      <section ref={collectionsRef} className="py-40 bg-black relative">
         <div className="container mx-auto px-8">
           <div className="text-center mb-24">
             <div className="text-[10px] tracking-[0.4em] text-accent mb-6 uppercase font-light luxury-line inline-block">
@@ -236,15 +288,26 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-40 bg-secondary/20 relative overflow-hidden">
-        <div className="container mx-auto px-8">
+      <section ref={innovationRef} className="py-40 bg-secondary/20 relative overflow-hidden">
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: "url('https://cdn.poehali.dev/files/96502297-55a5-4f1b-9094-15f929d959bf.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            transform: `translateY(${(scrollY - 2400) * 0.3}px)`,
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80" />
+
+        <div className="container mx-auto px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-24 items-center">
             <div className="relative order-2 lg:order-1 group">
               <div className="relative overflow-hidden">
                 <img
-                  src="/img/008411f8-a6b8-4270-a572-db8475b51c55.jpg"
-                  alt="Innovation"
-                  className="w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                  src="https://cdn.poehali.dev/files/96502297-55a5-4f1b-9094-15f929d959bf.jpg"
+                  alt="Innovation - Marble texture"
+                  className="w-full h-[600px] object-cover transition-all duration-1000 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute inset-0 border border-accent/20 group-hover:border-accent/40 transition-colors duration-700" />
@@ -264,7 +327,7 @@ const Index = () => {
                 </h3>
               </div>
 
-              <p className="text-base leading-loose text-foreground/60 font-light tracking-wide">
+              <p className="text-base leading-loose text-foreground/80 font-light tracking-wide">
                 Nos peintures intègrent la technologie NanoShield™ : une révolution silencieuse 
                 qui garantit une protection optimale pendant plus d'un demi-siècle.
               </p>
@@ -307,9 +370,14 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-40 bg-black relative">
+      <section ref={contactRef} className="py-40 bg-black relative">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/30 rounded-full blur-[150px]" />
+          <div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/30 rounded-full blur-[150px]"
+            style={{
+              transform: `translate(-50%, -50%) scale(${1 + scrollY * 0.0001})`,
+            }}
+          />
         </div>
         
         <div className="container mx-auto px-8 text-center relative z-10">

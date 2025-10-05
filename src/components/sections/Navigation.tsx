@@ -50,8 +50,8 @@ const Navigation = ({
                   alt="Logo" 
                   className="w-full h-full object-contain"
                   style={{
-                    filter: 'contrast(1.3) brightness(1.2) drop-shadow(0 4px 20px rgba(201,169,97,0.5)) invert(1)',
-                    mixBlendMode: 'screen'
+                    filter: 'contrast(2) brightness(0.8) drop-shadow(0 4px 20px rgba(201,169,97,0.5))',
+                    mixBlendMode: 'multiply'
                   }}
                 />
               </div>

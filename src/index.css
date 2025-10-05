@@ -105,6 +105,18 @@
     font-family: "Montserrat", sans-serif;
     letter-spacing: 0.03em;
     font-weight: 300;
+    scroll-behavior: smooth;
+  }
+
+  * {
+    transition-property:
+      color, background-color, border-color, transform, opacity;
+    transition-duration: 400ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  *:is(a, button, [role="button"]) {
+    transition-duration: 300ms;
   }
 
   h1,
@@ -218,5 +230,33 @@
 
   .animate-scale-in {
     animation: scaleIn 0.8s ease-out 0.5s both;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(201, 169, 97, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(201, 169, 97, 0.3);
+    }
+  }
+
+  .animate-glow {
+    animation: glow 3s ease-in-out infinite;
   }
 }

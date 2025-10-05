@@ -56,7 +56,7 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
           <Button
             size="lg"
             onClick={() => onNavigate('collections')}
-            className={`bg-transparent border ${theme === 'dark' ? 'border-accent/40 hover:border-accent hover:bg-accent/5 text-foreground' : 'border-accent/50 hover:border-accent hover:bg-accent/10 text-black'} px-14 py-7 text-xs tracking-[0.3em] uppercase font-light transition-all duration-500 hover:shadow-[0_0_30px_rgba(201,169,97,0.15)]`}
+            className={`bg-transparent border ${theme === 'dark' ? 'border-accent/40 hover:border-accent hover:bg-accent/5 text-foreground' : 'border-accent/50 hover:border-accent hover:bg-accent/10 text-black'} px-14 py-7 text-xs tracking-[0.3em] uppercase font-light transition-all duration-700 hover:shadow-[0_0_40px_rgba(201,169,97,0.25)] hover:scale-105`}
           >
             {t.explore}
           </Button>

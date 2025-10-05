@@ -9,8 +9,14 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
   const t = translations;
 
   return (
-    <section className="py-40 relative" style={{ backgroundColor: '#4a4e69' }}>
-      <div className="container mx-auto px-8">
+    <section className="py-40 relative overflow-hidden" style={{ 
+      background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)'
+    }}>
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent rounded-full blur-[120px]" />
+      </div>
+      <div className="container mx-auto px-8 relative z-10">
         <div className="text-center mb-24">
           <div className="text-[10px] tracking-[0.4em] text-accent mb-6 uppercase font-light luxury-line inline-block">
             {t.tag}
@@ -29,7 +35,7 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
           ].map((item, idx) => (
             <Card
               key={idx}
-              className="bg-white/5 border-0 p-12 hover:bg-white/10 transition-all duration-700 group cursor-pointer relative overflow-hidden"
+              className="bg-white/5 backdrop-blur-sm border-0 p-12 hover:bg-white/10 hover:scale-[1.02] transition-all duration-700 group cursor-pointer relative overflow-hidden hover:shadow-[0_0_60px_rgba(201,169,97,0.15)]"
             >
               <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
               <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />

@@ -40,14 +40,14 @@ const ContactSection = ({ scrollY, theme, translations }: ContactSectionProps) =
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8">
             <Button
               size="lg"
-              className="bg-accent hover:bg-accent/90 text-black px-16 py-7 text-xs tracking-[0.3em] uppercase font-light transition-all duration-500 hover:shadow-[0_0_40px_rgba(201,169,97,0.3)]"
+              className="bg-accent hover:bg-accent/90 text-black px-16 py-7 text-xs tracking-[0.3em] uppercase font-light transition-all duration-700 hover:shadow-[0_0_50px_rgba(201,169,97,0.4)] hover:scale-105"
             >
               {t.appointment}
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className={`bg-transparent border ${theme === 'dark' ? 'border-accent/40 hover:border-accent hover:bg-accent/5 text-foreground' : 'border-accent/50 hover:border-accent hover:bg-accent/10 text-black'} px-16 py-7 text-xs tracking-[0.3em] uppercase font-light transition-all duration-500`}
+              className={`bg-transparent border ${theme === 'dark' ? 'border-accent/40 hover:border-accent hover:bg-accent/5 text-foreground' : 'border-accent/50 hover:border-accent hover:bg-accent/10 text-black'} px-16 py-7 text-xs tracking-[0.3em] uppercase font-light transition-all duration-700 hover:scale-105 hover:shadow-[0_0_30px_rgba(201,169,97,0.15)]`}
             >
               {t.catalog}
             </Button>

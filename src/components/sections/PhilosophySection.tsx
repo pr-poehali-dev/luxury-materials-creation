@@ -66,10 +66,10 @@ const PhilosophySection = ({ scrollY, theme, translations }: PhilosophySectionPr
                 { value: "100%" }
               ].map((stat, idx) => (
                 <div key={idx} className="text-center group cursor-pointer">
-                  <div className="text-5xl font-light text-accent mb-3 group-hover:scale-110 transition-transform duration-500">
+                  <div className="text-5xl font-light text-accent mb-3 group-hover:scale-110 transition-all duration-700 group-hover:drop-shadow-[0_0_15px_rgba(201,169,97,0.5)]">
                     {stat.value}
                   </div>
-                  <div className={`text-[10px] tracking-[0.2em] ${theme === 'dark' ? 'text-foreground/50' : 'text-black/50'} uppercase font-light`}>
+                  <div className={`text-[10px] tracking-[0.2em] ${theme === 'dark' ? 'text-foreground/50' : 'text-black/50'} uppercase font-light group-hover:text-accent transition-colors duration-500`}>
                     {t.stats[idx]}
                   </div>
                 </div>

@@ -74,7 +74,13 @@ const Index = () => {
         onNavigate={scrollToSection}
       />
 
-      <section ref={heroRef}>
+      <section 
+        ref={heroRef}
+        className="lg:opacity-100 transition-opacity duration-500"
+        style={window.innerWidth < 1024 ? {
+          opacity: Math.max(0, 1 - scrollY / 800)
+        } : {}}
+      >
         <HeroSection 
           scrollY={scrollY}
           theme={theme}
@@ -83,7 +89,13 @@ const Index = () => {
         />
       </section>
 
-      <section ref={philosophyRef}>
+      <section 
+        ref={philosophyRef}
+        className="lg:opacity-100 transition-opacity duration-500"
+        style={window.innerWidth < 1024 ? {
+          opacity: Math.max(0.3, Math.min(1, (scrollY - 400) / 400)) * Math.max(0, 1 - (scrollY - 1400) / 600)
+        } : {}}
+      >
         <PhilosophySection 
           scrollY={scrollY}
           theme={theme}
@@ -91,13 +103,25 @@ const Index = () => {
         />
       </section>
 
-      <section ref={collectionsRef}>
+      <section 
+        ref={collectionsRef}
+        className="lg:opacity-100 transition-opacity duration-500"
+        style={window.innerWidth < 1024 ? {
+          opacity: Math.max(0.3, Math.min(1, (scrollY - 1200) / 400)) * Math.max(0, 1 - (scrollY - 2400) / 600)
+        } : {}}
+      >
         <CollectionsSection 
           translations={t.collections}
         />
       </section>
 
-      <section ref={innovationRef}>
+      <section 
+        ref={innovationRef}
+        className="lg:opacity-100 transition-opacity duration-500"
+        style={window.innerWidth < 1024 ? {
+          opacity: Math.max(0.3, Math.min(1, (scrollY - 2200) / 400)) * Math.max(0, 1 - (scrollY - 3600) / 600)
+        } : {}}
+      >
         <InnovationSection 
           scrollY={scrollY}
           theme={theme}
@@ -105,7 +129,13 @@ const Index = () => {
         />
       </section>
 
-      <section ref={contactRef}>
+      <section 
+        ref={contactRef}
+        className="lg:opacity-100 transition-opacity duration-500"
+        style={window.innerWidth < 1024 ? {
+          opacity: Math.max(0.3, Math.min(1, (scrollY - 3400) / 400))
+        } : {}}
+      >
         <ContactSection 
           scrollY={scrollY}
           theme={theme}

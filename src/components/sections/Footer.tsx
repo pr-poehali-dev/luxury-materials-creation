@@ -32,7 +32,7 @@ const Footer = ({ theme }: FooterProps) => {
             },
             {
               title: "Contact",
-              items: ["Paris · London · Milano", "+33 1 00 00 00 00", "contact@maisondepierre.fr"]
+              items: ["Produced in France", "+33 1 00 00 00 00", "contact@maisondepierre.fr"]
             }
           ].map((section, idx) => (
             <div key={idx} className="space-y-6">

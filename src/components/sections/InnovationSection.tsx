@@ -49,13 +49,25 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
             className="relative order-2 lg:order-1 flex items-center justify-center"
           >
             <div 
-              className="text-[280px] transition-all duration-700 hover:scale-110"
+              className="relative transition-all duration-700 hover:scale-110"
               style={{
-                transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 3200) * 0.1}px) rotate(${Math.sin(scrollY * 0.001) * 5}deg)` : 'none',
-                filter: 'drop-shadow(0 20px 60px rgba(201,169,97,0.3))'
+                transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 3200) * 0.1}px) rotate(${Math.sin(scrollY * 0.001) * 3}deg)` : 'none',
+                filter: 'drop-shadow(0 30px 80px rgba(201,169,97,0.4))'
               }}
             >
-              🐢
+              <div className="relative w-[450px] h-[450px]">
+                <div className="absolute inset-0 bg-gradient-radial from-accent/20 via-accent/5 to-transparent blur-3xl" />
+                <img 
+                  src="https://cdn.poehali.dev/files/e94159c8-7a61-4b3e-8c89-b05ce771a640.jpg" 
+                  alt="Luxury Turtle" 
+                  className="relative z-10 w-full h-full object-contain transition-all duration-700 hover:rotate-3"
+                  style={{
+                    filter: 'contrast(1.1) brightness(1.05)'
+                  }}
+                />
+                <div className="absolute -bottom-8 -right-8 w-64 h-64 border border-accent/10 pointer-events-none" />
+                <div className="absolute -top-8 -left-8 w-48 h-48 border border-accent/5 pointer-events-none" />
+              </div>
             </div>
           </motion.div>
 

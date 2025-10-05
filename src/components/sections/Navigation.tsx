@@ -44,8 +44,15 @@ const Navigation = ({
               onClick={() => handleNavigate('hero')}
               className="flex items-center gap-4 group cursor-pointer"
             >
-              <div className="text-4xl transition-all duration-700 group-hover:scale-110">
-                🐢
+              <div className="w-14 h-14 transition-all duration-700 group-hover:scale-110 group-hover:rotate-3">
+                <img 
+                  src="https://cdn.poehali.dev/files/e94159c8-7a61-4b3e-8c89-b05ce771a640.jpg" 
+                  alt="Logo" 
+                  className="w-full h-full object-contain"
+                  style={{
+                    filter: 'drop-shadow(0 4px 12px rgba(201,169,97,0.3))'
+                  }}
+                />
               </div>
               <div>
                 <div className={`text-[9px] tracking-[0.4em] ${theme === 'dark' ? 'text-accent/60' : 'text-accent/70'} uppercase font-extralight`}>

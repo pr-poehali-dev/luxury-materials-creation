@@ -11,6 +11,9 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
 
   return (
     <section className={`py-40 ${theme === 'dark' ? 'bg-secondary/20' : 'bg-gray-100'} relative overflow-hidden`}>
+      <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-black to-transparent pointer-events-none z-20" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
+      
       <div 
         className="absolute inset-0 opacity-30"
         style={{
@@ -24,8 +27,26 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
 
       <div className="container mx-auto px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-24 items-center">
-          <div className="relative order-2 lg:order-1 group">
-            <div className="relative overflow-hidden">
+          <div 
+            className="relative order-2 lg:order-1 group"
+            style={{
+              transform: 'perspective(1200px)',
+              transformStyle: 'preserve-3d'
+            }}
+          >
+            <div 
+              className="relative overflow-hidden transition-all duration-1000"
+              style={{
+                transform: 'translateZ(0px)',
+                transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateZ(30px) rotateY(-5deg)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateZ(0px) rotateY(0deg)';
+              }}
+            >
               <img
                 src="https://cdn.poehali.dev/files/96502297-55a5-4f1b-9094-15f929d959bf.jpg"
                 alt="Innovation - Marble texture"

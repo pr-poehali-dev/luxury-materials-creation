@@ -11,6 +11,8 @@ const ContactSection = ({ scrollY, theme, translations }: ContactSectionProps) =
 
   return (
     <section className={`py-40 ${theme === 'dark' ? 'bg-black' : 'bg-white'} relative`}>
+      <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-black to-transparent pointer-events-none z-20" />
+      
       <div className="absolute inset-0 opacity-10">
         <div 
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/30 rounded-full blur-[150px]"

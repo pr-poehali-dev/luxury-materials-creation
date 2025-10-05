@@ -24,8 +24,10 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
           alt="Luxury materials"
           className={`w-full h-full object-cover ${theme === 'dark' ? 'opacity-40' : 'opacity-20'}`}
         />
-        <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-b from-black/60 via-black/20 to-black' : 'bg-gradient-to-b from-white/60 via-white/20 to-white'}`} />
+        <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-b from-black/60 via-black/20 to-transparent' : 'bg-gradient-to-b from-white/60 via-white/20 to-transparent'}`} />
       </div>
+      
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-secondary/60 to-transparent pointer-events-none z-20" />
 
       <div 
         className="relative z-10 text-center px-6 max-w-5xl mx-auto"
@@ -42,10 +44,16 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
           </div>
         </div>
         
-        <h2 className={`text-[clamp(3rem,10vw,9rem)] leading-[0.9] font-light tracking-[0.08em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-8 animate-fade-in`}>
+        <h2 
+          className={`text-[clamp(3rem,10vw,9rem)] leading-[0.9] font-light tracking-[0.08em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-8 animate-fade-in`}
+          style={{
+            transform: `perspective(1000px) rotateX(${scrollY * 0.02}deg)`,
+            transformStyle: 'preserve-3d'
+          }}
+        >
           MAISON
           <br />
-          <span className="text-gradient-gold">DE PIERRE</span>
+          <span className="text-gradient-gold" style={{ display: 'inline-block', transform: 'translateZ(30px)' }}>DE PIERRE</span>
         </h2>
 
         <p className={`text-lg tracking-[0.15em] ${theme === 'dark' ? 'text-foreground/70' : 'text-black/70'} mb-16 max-w-2xl mx-auto font-light leading-relaxed animate-slide-up`}>

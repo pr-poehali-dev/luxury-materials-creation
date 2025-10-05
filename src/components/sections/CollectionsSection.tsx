@@ -12,6 +12,9 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
     <section className="py-40 relative overflow-hidden" style={{ 
       background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)'
     }}>
+      <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-secondary/30 to-transparent pointer-events-none z-20" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
+      
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent rounded-full blur-[120px]" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent rounded-full blur-[120px]" />
@@ -21,8 +24,14 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
           <div className="text-[10px] tracking-[0.4em] text-accent mb-6 uppercase font-light luxury-line inline-block">
             {t.tag}
           </div>
-          <h3 className="text-6xl font-light tracking-[0.05em] text-white mb-6">
-            {t.title}
+          <h3 
+            className="text-6xl font-light tracking-[0.05em] text-white mb-6"
+            style={{
+              transform: 'perspective(800px)',
+              transformStyle: 'preserve-3d'
+            }}
+          >
+            <span style={{ display: 'inline-block', transform: 'translateZ(25px)' }}>{t.title}</span>
           </h3>
           <div className="w-24 h-px bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mt-8" />
         </div>
@@ -35,7 +44,18 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
           ].map((item, idx) => (
             <Card
               key={idx}
-              className="bg-white/5 backdrop-blur-sm border-0 p-12 hover:bg-white/10 hover:scale-[1.02] transition-all duration-700 group cursor-pointer relative overflow-hidden hover:shadow-[0_0_60px_rgba(201,169,97,0.15)]"
+              className="bg-white/5 backdrop-blur-sm border-0 p-12 hover:bg-white/10 transition-all duration-700 group cursor-pointer relative overflow-hidden hover:shadow-[0_0_60px_rgba(201,169,97,0.15)]"
+              style={{
+                transform: 'perspective(1000px)',
+                transformStyle: 'preserve-3d',
+                transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'perspective(1000px) translateZ(20px) rotateY(2deg)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'perspective(1000px) translateZ(0px) rotateY(0deg)';
+              }}
             >
               <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
               <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />

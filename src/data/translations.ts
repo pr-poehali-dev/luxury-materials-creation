@@ -61,7 +61,7 @@ export const translations = {
       title2: "your masterpiece",
       desc: "Our experts are at your disposal for personalized consultation and to support you in realizing your most ambitious projects.",
       appointment: "Make an appointment",
-      catalog: "Catalog 2024"
+      catalog: "Catalog 2025"
     }
   },
   ru: {
@@ -126,7 +126,7 @@ export const translations = {
       title2: "ваш шедевр",
       desc: "Наши эксперты готовы провести персональную консультацию и помочь воплотить ваши самые амбициозные проекты.",
       appointment: "Записаться на консультацию",
-      catalog: "Каталог 2024"
+      catalog: "Каталог 2025"
     }
   }
 };

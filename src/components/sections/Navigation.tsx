@@ -44,7 +44,9 @@ const Navigation = ({
               onClick={() => handleNavigate('hero')}
               className="flex items-center gap-4 group cursor-pointer"
             >
-              <div className="w-[1px] h-14 bg-gradient-to-b from-transparent via-accent/40 to-transparent transition-all duration-700 group-hover:h-20 group-hover:via-accent/60" />
+              <div className="text-4xl transition-all duration-700 group-hover:scale-110">
+                🐢
+              </div>
               <div>
                 <div className={`text-[9px] tracking-[0.4em] ${theme === 'dark' ? 'text-accent/60' : 'text-accent/70'} uppercase font-extralight`}>
                   Est. 1999

@@ -43,47 +43,20 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
         <div className="grid lg:grid-cols-2 gap-24 items-center">
           <motion.div 
             ref={leftRef as any}
-            initial={{ opacity: 0, x: -50 }}
-            animate={leftVisible ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.9, ease: 'easeOut' }}
-            className="relative order-2 lg:order-1 group"
-            style={{
-              perspective: '1200px'
-            }}
+            initial={{ opacity: 0, x: -200, rotate: -20 }}
+            animate={leftVisible ? { opacity: 1, x: 0, rotate: 0 } : {}}
+            transition={{ duration: 1.2, ease: 'easeOut' }}
+            className="relative order-2 lg:order-1 flex items-center justify-center"
           >
             <div 
-              className="relative overflow-hidden transition-all duration-1000"
+              className="text-[280px] transition-all duration-700 hover:scale-110"
               style={{
-                transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 3200) * 0.15}px)` : 'none'
-              }}
-              onMouseEnter={(e) => {
-                if (window.innerWidth >= 1024) {
-                  e.currentTarget.style.transform = `translateZ(40px) rotateY(-8deg) translateY(${(scrollY - 3200) * 0.15}px)`;
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (window.innerWidth >= 1024) {
-                  e.currentTarget.style.transform = `translateZ(0px) rotateY(0deg) translateY(${(scrollY - 3200) * 0.15}px)`;
-                }
+                transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 3200) * 0.1}px) rotate(${Math.sin(scrollY * 0.001) * 5}deg)` : 'none',
+                filter: 'drop-shadow(0 20px 60px rgba(201,169,97,0.3))'
               }}
             >
-              <div className="relative w-full h-[550px] bg-gradient-to-br from-accent/5 via-transparent to-accent/10 backdrop-blur-sm">
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/[0.02] to-transparent" />
-                <div className={`absolute inset-0 border ${theme === 'dark' ? 'border-accent/10' : 'border-accent/20'} group-hover:border-accent/30 transition-colors duration-1000`} />
-                
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center space-y-8 p-12">
-                    <div className="w-24 h-24 mx-auto border border-accent/20 flex items-center justify-center group-hover:border-accent/40 transition-all duration-1000 group-hover:rotate-45">
-                      <div className="text-6xl group-hover:-rotate-45 transition-transform duration-1000">✦</div>
-                    </div>
-                    <div className={`text-sm tracking-[0.3em] uppercase font-extralight ${theme === 'dark' ? 'text-foreground/40' : 'text-black/40'}`}>
-                      Innovation meets artistry
-                    </div>
-                  </div>
-                </div>
-              </div>
+              🐢
             </div>
-            <div className={`absolute -bottom-12 -right-12 w-72 h-72 border ${theme === 'dark' ? 'border-accent/5' : 'border-accent/10'} pointer-events-none`} />
           </motion.div>
 
           <motion.div 

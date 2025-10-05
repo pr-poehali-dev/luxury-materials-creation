@@ -1,3 +1,6 @@
+import { motion } from 'framer-motion';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+
 interface PhilosophySectionProps {
   scrollY: number;
   theme: 'dark' | 'light';
@@ -6,6 +9,11 @@ interface PhilosophySectionProps {
 
 const PhilosophySection = ({ scrollY, theme, translations }: PhilosophySectionProps) => {
   const t = translations;
+  const { ref: titleRef, isVisible: titleVisible } = useScrollReveal({ threshold: 0.2 });
+  const { ref: desc1Ref, isVisible: desc1Visible } = useScrollReveal({ threshold: 0.3 });
+  const { ref: desc2Ref, isVisible: desc2Visible } = useScrollReveal({ threshold: 0.3 });
+  const { ref: desc3Ref, isVisible: desc3Visible } = useScrollReveal({ threshold: 0.3 });
+  const { ref: statsRef, isVisible: statsVisible } = useScrollReveal({ threshold: 0.4 });
 
   return (
     <section className={`py-48 ${theme === 'dark' ? 'bg-gradient-to-b from-background via-secondary/20 to-background' : 'bg-gradient-to-b from-white via-gray-50 to-white'} relative overflow-hidden`}>
@@ -38,7 +46,12 @@ const PhilosophySection = ({ scrollY, theme, translations }: PhilosophySectionPr
               transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 900) * -0.1}px)` : 'none'
             }}
           >
-            <div>
+            <motion.div
+              ref={titleRef as any}
+              initial={{ opacity: 0, y: 50 }}
+              animate={titleVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+            >
               <div className="text-[9px] tracking-[0.5em] text-accent/80 mb-8 uppercase font-extralight luxury-line inline-block">
                 {t.tag}
               </div>
@@ -49,21 +62,45 @@ const PhilosophySection = ({ scrollY, theme, translations }: PhilosophySectionPr
                 <br />
                 <span className="text-gradient-gold lg:inline-block" style={window.innerWidth >= 1024 ? { display: 'inline-block', transform: 'translateZ(40px)' } : {}}>{t.title2}</span>
               </h3>
-            </div>
+            </motion.div>
 
             <div className="space-y-8 max-w-3xl mx-auto">
-              <p className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/70' : 'text-black/70'} font-extralight tracking-[0.02em]`}>
+              <motion.p 
+                ref={desc1Ref as any}
+                initial={{ opacity: 0, y: 30 }}
+                animate={desc1Visible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+                className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/70' : 'text-black/70'} font-extralight tracking-[0.02em]`}
+              >
                 {t.desc1}
-              </p>
-              <p className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/70' : 'text-black/70'} font-extralight tracking-[0.02em]`}>
+              </motion.p>
+              <motion.p 
+                ref={desc2Ref as any}
+                initial={{ opacity: 0, y: 30 }}
+                animate={desc2Visible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+                className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/70' : 'text-black/70'} font-extralight tracking-[0.02em]`}
+              >
                 {t.desc2}
-              </p>
-              <p className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/80' : 'text-black/80'} font-extralight tracking-[0.02em] italic`}>
+              </motion.p>
+              <motion.p 
+                ref={desc3Ref as any}
+                initial={{ opacity: 0, y: 30 }}
+                animate={desc3Visible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+                className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/80' : 'text-black/80'} font-extralight tracking-[0.02em] italic`}
+              >
                 {t.desc3}
-              </p>
+              </motion.p>
             </div>
 
-            <div className={`grid grid-cols-3 gap-12 pt-16 mt-4 border-t ${theme === 'dark' ? 'border-accent/5' : 'border-accent/10'} max-w-4xl mx-auto`}>
+            <motion.div 
+              ref={statsRef as any}
+              initial={{ opacity: 0, y: 40 }}
+              animate={statsVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
+              className={`grid grid-cols-3 gap-12 pt-16 mt-4 border-t ${theme === 'dark' ? 'border-accent/5' : 'border-accent/10'} max-w-4xl mx-auto`}
+            >
               {[
                 { value: "25+" },
                 { value: "∞" },
@@ -87,7 +124,7 @@ const PhilosophySection = ({ scrollY, theme, translations }: PhilosophySectionPr
                   </div>
                 </div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

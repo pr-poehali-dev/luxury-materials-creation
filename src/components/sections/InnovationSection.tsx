@@ -1,4 +1,6 @@
 import Icon from "@/components/ui/icon";
+import { motion } from 'framer-motion';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 interface InnovationSectionProps {
   scrollY: number;
@@ -8,6 +10,8 @@ interface InnovationSectionProps {
 
 const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionProps) => {
   const t = translations;
+  const { ref: leftRef, isVisible: leftVisible } = useScrollReveal({ threshold: 0.2 });
+  const { ref: rightRef, isVisible: rightVisible } = useScrollReveal({ threshold: 0.2 });
 
   return (
     <section className="py-48 relative overflow-hidden" style={{
@@ -37,7 +41,11 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
 
       <div className="container mx-auto px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-24 items-center">
-          <div 
+          <motion.div 
+            ref={leftRef as any}
+            initial={{ opacity: 0, x: -50 }}
+            animate={leftVisible ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.9, ease: 'easeOut' }}
             className="relative order-2 lg:order-1 group"
             style={{
               perspective: '1200px'
@@ -76,9 +84,13 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
               </div>
             </div>
             <div className={`absolute -bottom-12 -right-12 w-72 h-72 border ${theme === 'dark' ? 'border-accent/5' : 'border-accent/10'} pointer-events-none`} />
-          </div>
+          </motion.div>
 
-          <div 
+          <motion.div 
+            ref={rightRef as any}
+            initial={{ opacity: 0, x: 50 }}
+            animate={rightVisible ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.9, ease: 'easeOut' }}
             className="space-y-10 order-1 lg:order-2"
             style={{
               transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 3200) * -0.08}px)` : 'none'
@@ -120,7 +132,7 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

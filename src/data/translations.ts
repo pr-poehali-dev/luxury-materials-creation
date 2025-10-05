@@ -1,6 +1,17 @@
 export const translations = {
   en: {
     nav: ["Home", "Philosophy", "Collections", "Innovation", "Contact"],
+    earth: {
+      tag: "Our Mission",
+      title1: "Building for",
+      title2: "generations",
+      desc1: "Every project we touch becomes a testament to human craftsmanship. We believe in creating spaces that don't just exist — they endure, inspire, and elevate the human experience.",
+      desc2: "Our commitment transcends commerce. It's about leaving the world more beautiful than we found it, one architectural masterpiece at a time.",
+      stats: [
+        { value: "150+", label: "Iconic projects" },
+        { value: "45", label: "Countries worldwide" }
+      ]
+    },
     hero: {
       subtitle: "Where architectural excellence meets timeless innovation",
       explore: "Explore",
@@ -67,6 +78,17 @@ export const translations = {
   },
   ru: {
     nav: ["Главная", "Философия", "Коллекции", "Инновации", "Контакты"],
+    earth: {
+      tag: "Наша миссия",
+      title1: "Строим для",
+      title2: "поколений",
+      desc1: "Каждый проект становится свидетельством человеческого мастерства. Мы создаём пространства, которые не просто существуют — они вдохновляют и возвышают человеческий опыт.",
+      desc2: "Наше обязательство выходит за рамки коммерции. Мы делаем мир прекраснее, создавая архитектурные шедевры один за другим.",
+      stats: [
+        { value: "150+", label: "Культовых проектов" },
+        { value: "45", label: "Стран мира" }
+      ]
+    },
     hero: {
       subtitle: "Где архитектурное совершенство встречается с вечными инновациями",
       explore: "Исследовать",

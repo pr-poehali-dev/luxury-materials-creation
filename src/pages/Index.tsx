@@ -98,6 +98,7 @@ const Index = () => {
         <EarthSection 
           scrollY={scrollY}
           theme={theme}
+          translations={t.earth}
         />
       </section>
 

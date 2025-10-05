@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { motion } from 'framer-motion';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 interface ContactSectionProps {
   scrollY: number;
@@ -8,6 +10,7 @@ interface ContactSectionProps {
 
 const ContactSection = ({ scrollY, theme, translations }: ContactSectionProps) => {
   const t = translations;
+  const { ref: contentRef, isVisible: contentVisible } = useScrollReveal({ threshold: 0.2 });
 
   return (
     <section className={`py-40 ${theme === 'dark' ? 'bg-black' : 'bg-white'} relative`}>
@@ -23,7 +26,11 @@ const ContactSection = ({ scrollY, theme, translations }: ContactSectionProps) =
       </div>
       
       <div className="container mx-auto px-8 text-center relative z-10">
-        <div 
+        <motion.div 
+          ref={contentRef as any}
+          initial={{ opacity: 0, y: 60 }}
+          animate={contentVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, ease: 'easeOut' }}
           className="max-w-3xl mx-auto space-y-12"
           style={{
             transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 4200) * -0.08}px)` : 'none'
@@ -59,7 +66,7 @@ const ContactSection = ({ scrollY, theme, translations }: ContactSectionProps) =
               {t.catalog}
             </Button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

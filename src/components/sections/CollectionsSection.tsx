@@ -1,5 +1,7 @@
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
+import { motion } from 'framer-motion';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 interface CollectionsSectionProps {
   translations: any;
@@ -7,6 +9,10 @@ interface CollectionsSectionProps {
 
 const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
   const t = translations;
+  const { ref: titleRef, isVisible: titleVisible } = useScrollReveal({ threshold: 0.2 });
+  const card1 = useScrollReveal({ threshold: 0.2 });
+  const card2 = useScrollReveal({ threshold: 0.2 });
+  const card3 = useScrollReveal({ threshold: 0.2 });
 
   return (
     <section className="py-48 relative overflow-hidden" style={{ 
@@ -20,7 +26,11 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
         <div className="absolute bottom-1/3 right-1/3 w-[600px] h-[600px] bg-accent rounded-full blur-[150px]" />
       </div>
       <div className="container mx-auto px-8 relative z-10">
-        <div 
+        <motion.div 
+          ref={titleRef as any}
+          initial={{ opacity: 0, y: 50 }}
+          animate={titleVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           className="text-center mb-32"
           style={{
             transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 2400) * -0.12}px)` : 'none'
@@ -35,15 +45,25 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
             <span className="lg:inline-block" style={window.innerWidth >= 1024 ? { display: 'inline-block', transform: 'translateZ(25px)' } : {}}>{t.title}</span>
           </h3>
           <div className="w-32 h-[0.5px] bg-gradient-to-r from-transparent via-accent/30 to-transparent mx-auto mt-12" />
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-3 gap-px">
           {[
             { icon: "Gem" },
             { icon: "Droplets" },
             { icon: "Palette" }
-          ].map((item, idx) => (
-            <Card
+          ].map((item, idx) => {
+            const cards = [card1, card2, card3];
+            const { ref, isVisible } = cards[idx];
+            return (
+            <motion.div
+              key={idx}
+              ref={ref as any}
+              initial={{ opacity: 0, y: 60 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: idx * 0.15, ease: 'easeOut' }}
+            >
+              <Card
               key={idx}
               className="bg-white/[0.02] backdrop-blur-md border-0 p-14 lg:hover:bg-white/[0.05] transition-all duration-1000 group cursor-pointer relative overflow-hidden lg:hover:shadow-[0_0_80px_rgba(212,181,116,0.1)]"
               onMouseEnter={(e) => {
@@ -85,7 +105,8 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
                 <Icon name="ArrowRight" size={12} className="ml-3 group-hover:translate-x-2 transition-transform duration-700" />
               </div>
             </Card>
-          ))}
+            </motion.div>
+          );})
         </div>
       </div>
     </section>

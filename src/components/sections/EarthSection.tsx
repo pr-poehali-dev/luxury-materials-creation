@@ -1,9 +1,16 @@
+import { motion } from 'framer-motion';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+
 interface EarthSectionProps {
   scrollY: number;
   theme: 'dark' | 'light';
+  translations: any;
 }
 
-const EarthSection = ({ scrollY, theme }: EarthSectionProps) => {
+const EarthSection = ({ scrollY, theme, translations }: EarthSectionProps) => {
+  const t = translations;
+  const { ref: contentRef, isVisible: contentVisible } = useScrollReveal({ threshold: 0.2 });
+  const { ref: earthRef, isVisible: earthVisible } = useScrollReveal({ threshold: 0.2 });
   const sectionStart = 1800;
   const sectionEnd = 2800;
   const progress = Math.max(0, Math.min(1, (scrollY - sectionStart) / (sectionEnd - sectionStart)));
@@ -34,32 +41,35 @@ const EarthSection = ({ scrollY, theme }: EarthSectionProps) => {
       <div className="container mx-auto px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8 order-2 lg:order-1">
+            <motion.div 
+              ref={contentRef as any}
+              initial={{ opacity: 0, x: -50 }}
+              animate={contentVisible ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.9, ease: 'easeOut' }}
+              className="space-y-8 order-2 lg:order-1"
+            >
               <div>
                 <div className="text-[9px] tracking-[0.5em] text-accent/60 mb-8 uppercase font-extralight luxury-line inline-block">
-                  Our Mission
+                  {t.tag}
                 </div>
                 <h3 className={`text-[clamp(2rem,5vw,4rem)] leading-[1.1] font-extralight tracking-[0.03em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-8`}>
-                  Building for
+                  {t.title1}
                   <br />
-                  <span className="text-gradient-gold">generations</span>
+                  <span className="text-gradient-gold">{t.title2}</span>
                 </h3>
               </div>
 
               <div className="space-y-6">
                 <p className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/70' : 'text-black/70'} font-extralight tracking-[0.02em]`}>
-                  Every project we touch becomes a testament to human craftsmanship. We believe in creating spaces that don't just exist — they endure, inspire, and elevate the human experience.
+                  {t.desc1}
                 </p>
                 <p className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/70' : 'text-black/70'} font-extralight tracking-[0.02em]`}>
-                  Our commitment transcends commerce. It's about leaving the world more beautiful than we found it, one architectural masterpiece at a time.
+                  {t.desc2}
                 </p>
               </div>
 
               <div className={`grid grid-cols-2 gap-8 pt-8 border-t ${theme === 'dark' ? 'border-accent/5' : 'border-accent/10'}`}>
-                {[
-                  { value: '150+', label: 'Iconic projects' },
-                  { value: '45', label: 'Countries worldwide' }
-                ].map((stat, idx) => (
+                {t.stats.map((stat: any, idx: number) => (
                   <div key={idx} className="space-y-2">
                     <div className="text-4xl font-extralight text-accent/90">
                       {stat.value}
@@ -70,9 +80,13 @@ const EarthSection = ({ scrollY, theme }: EarthSectionProps) => {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            <div 
+            <motion.div
+              ref={earthRef as any}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={earthVisible ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 1, ease: 'easeOut' }} 
               className="relative order-1 lg:order-2 flex items-center justify-center py-12"
               style={{
                 perspective: '1000px'
@@ -136,7 +150,7 @@ const EarthSection = ({ scrollY, theme }: EarthSectionProps) => {
                   }}
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

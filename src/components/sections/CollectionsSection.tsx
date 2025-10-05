@@ -26,12 +26,8 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
           </div>
           <h3 
             className="text-6xl font-light tracking-[0.05em] text-white mb-6"
-            style={{
-              transform: 'perspective(800px)',
-              transformStyle: 'preserve-3d'
-            }}
           >
-            <span style={{ display: 'inline-block', transform: 'translateZ(25px)' }}>{t.title}</span>
+            <span className="lg:inline-block" style={window.innerWidth >= 1024 ? { display: 'inline-block', transform: 'translateZ(25px)' } : {}}>{t.title}</span>
           </h3>
           <div className="w-24 h-px bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mt-8" />
         </div>
@@ -44,17 +40,16 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
           ].map((item, idx) => (
             <Card
               key={idx}
-              className="bg-white/5 backdrop-blur-sm border-0 p-12 hover:bg-white/10 transition-all duration-700 group cursor-pointer relative overflow-hidden hover:shadow-[0_0_60px_rgba(201,169,97,0.15)]"
-              style={{
-                transform: 'perspective(1000px)',
-                transformStyle: 'preserve-3d',
-                transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)'
-              }}
+              className="bg-white/5 backdrop-blur-sm border-0 p-12 lg:hover:bg-white/10 transition-all duration-700 group cursor-pointer relative overflow-hidden lg:hover:shadow-[0_0_60px_rgba(201,169,97,0.15)]"
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'perspective(1000px) translateZ(20px) rotateY(2deg)';
+                if (window.innerWidth >= 1024) {
+                  e.currentTarget.style.transform = 'perspective(1000px) translateZ(20px) rotateY(2deg)';
+                }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'perspective(1000px) translateZ(0px) rotateY(0deg)';
+                if (window.innerWidth >= 1024) {
+                  e.currentTarget.style.transform = 'perspective(1000px) translateZ(0px) rotateY(0deg)';
+                }
               }}
             >
               <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />

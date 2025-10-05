@@ -20,7 +20,7 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
           backgroundImage: "url('https://cdn.poehali.dev/files/96502297-55a5-4f1b-9094-15f929d959bf.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          transform: `translateY(${(scrollY - 2400) * 0.3}px)`,
+          transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 2400) * 0.3}px)` : 'none',
         }}
       />
       <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-b from-black/80 via-black/60 to-black/80' : 'bg-gradient-to-b from-white/80 via-white/60 to-white/80'}`} />
@@ -29,22 +29,18 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
         <div className="grid lg:grid-cols-2 gap-24 items-center">
           <div 
             className="relative order-2 lg:order-1 group"
-            style={{
-              transform: 'perspective(1200px)',
-              transformStyle: 'preserve-3d'
-            }}
           >
             <div 
               className="relative overflow-hidden transition-all duration-1000"
-              style={{
-                transform: 'translateZ(0px)',
-                transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
-              }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateZ(30px) rotateY(-5deg)';
+                if (window.innerWidth >= 1024) {
+                  e.currentTarget.style.transform = 'translateZ(30px) rotateY(-5deg)';
+                }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateZ(0px) rotateY(0deg)';
+                if (window.innerWidth >= 1024) {
+                  e.currentTarget.style.transform = 'translateZ(0px) rotateY(0deg)';
+                }
               }}
             >
               <img

@@ -11,7 +11,7 @@ const PhilosophySection = ({ scrollY, theme, translations }: PhilosophySectionPr
     <section className={`py-40 ${theme === 'dark' ? 'bg-secondary/30' : 'bg-gray-50'} relative overflow-hidden`}>
       <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-background via-secondary/50 to-transparent pointer-events-none z-10" />
       
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none hidden lg:block">
         <div 
           className="absolute top-1/4 left-1/3 w-[600px] h-[600px] rounded-full opacity-20"
           style={{
@@ -47,14 +47,10 @@ const PhilosophySection = ({ scrollY, theme, translations }: PhilosophySectionPr
               </div>
               <h3 
                 className={`text-6xl leading-tight font-light tracking-[0.05em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-8`}
-                style={{
-                  transform: 'perspective(800px) rotateY(0deg)',
-                  transformStyle: 'preserve-3d'
-                }}
               >
-                <span style={{ display: 'inline-block', transform: 'translateZ(10px)' }}>{t.title1}</span>
+                <span className="lg:inline-block" style={window.innerWidth >= 1024 ? { display: 'inline-block', transform: 'translateZ(10px)' } : {}}>{t.title1}</span>
                 <br />
-                <span className="text-gradient-gold" style={{ display: 'inline-block', transform: 'translateZ(40px)' }}>{t.title2}</span>
+                <span className="text-gradient-gold lg:inline-block" style={window.innerWidth >= 1024 ? { display: 'inline-block', transform: 'translateZ(40px)' } : {}}>{t.title2}</span>
               </h3>
             </div>
 
@@ -76,17 +72,13 @@ const PhilosophySection = ({ scrollY, theme, translations }: PhilosophySectionPr
                 <div 
                   key={idx} 
                   className="text-center group cursor-pointer"
-                  style={{
-                    transform: 'perspective(600px)',
-                    transformStyle: 'preserve-3d'
-                  }}
                 >
                   <div 
-                    className="text-5xl font-light text-accent mb-3 group-hover:scale-110 transition-all duration-700 group-hover:drop-shadow-[0_0_15px_rgba(201,169,97,0.5)]"
-                    style={{
+                    className="text-5xl font-light text-accent mb-3 lg:group-hover:scale-110 transition-all duration-700 lg:group-hover:drop-shadow-[0_0_15px_rgba(201,169,97,0.5)]"
+                    style={window.innerWidth >= 1024 ? {
                       transform: 'translateZ(30px)',
                       transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)'
-                    }}
+                    } : {}}
                   >
                     {stat.value}
                   </div>

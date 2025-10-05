@@ -106,7 +106,8 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
               </div>
             </Card>
             </motion.div>
-          );})
+          );
+          })}
         </div>
       </div>
     </section>

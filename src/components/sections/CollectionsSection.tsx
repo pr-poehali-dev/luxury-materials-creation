@@ -20,7 +20,12 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
         <div className="absolute bottom-1/3 right-1/3 w-[600px] h-[600px] bg-accent rounded-full blur-[150px]" />
       </div>
       <div className="container mx-auto px-8 relative z-10">
-        <div className="text-center mb-32">
+        <div 
+          className="text-center mb-32"
+          style={{
+            transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 2400) * -0.12}px)` : 'none'
+          }}
+        >
           <div className="text-[9px] tracking-[0.5em] text-accent/60 mb-8 uppercase font-extralight luxury-line inline-block">
             {t.tag}
           </div>

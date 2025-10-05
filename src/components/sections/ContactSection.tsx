@@ -23,33 +23,38 @@ const ContactSection = ({ scrollY, theme, translations }: ContactSectionProps) =
       </div>
       
       <div className="container mx-auto px-8 text-center relative z-10">
-        <div className="max-w-3xl mx-auto space-y-12">
+        <div 
+          className="max-w-3xl mx-auto space-y-12"
+          style={{
+            transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 4200) * -0.08}px)` : 'none'
+          }}
+        >
           <div>
-            <div className="text-[10px] tracking-[0.4em] text-accent mb-8 uppercase font-light luxury-line inline-block">
+            <div className="text-[9px] tracking-[0.5em] text-accent/60 mb-8 uppercase font-extralight luxury-line inline-block">
               {t.tag}
             </div>
-            <h3 className={`text-6xl leading-tight font-light tracking-[0.05em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-8`}>
+            <h3 className={`text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] font-extralight tracking-[0.03em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-10`}>
               {t.title1}
               <br />
               <span className="text-gradient-gold">{t.title2}</span>
             </h3>
           </div>
 
-          <p className={`text-base leading-loose ${theme === 'dark' ? 'text-foreground/60' : 'text-black/60'} font-light tracking-wide max-w-2xl mx-auto`}>
+          <p className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/70' : 'text-black/70'} font-extralight tracking-[0.02em] max-w-2xl mx-auto`}>
             {t.desc}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-12">
             <Button
               size="lg"
-              className="bg-accent hover:bg-accent/90 text-black px-16 py-7 text-xs tracking-[0.3em] uppercase font-light transition-all duration-700 hover:shadow-[0_0_50px_rgba(201,169,97,0.4)] hover:scale-105"
+              className="bg-accent hover:bg-accent/90 text-black px-16 py-8 text-[10px] tracking-[0.35em] uppercase font-extralight transition-all duration-1000 hover:shadow-[0_0_60px_rgba(212,181,116,0.4)] hover:scale-105"
             >
               {t.appointment}
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className={`bg-transparent border ${theme === 'dark' ? 'border-accent/40 hover:border-accent hover:bg-accent/5 text-foreground' : 'border-accent/50 hover:border-accent hover:bg-accent/10 text-black'} px-16 py-7 text-xs tracking-[0.3em] uppercase font-light transition-all duration-700 hover:scale-105 hover:shadow-[0_0_30px_rgba(201,169,97,0.15)]`}
+              className={`bg-transparent border ${theme === 'dark' ? 'border-accent/20 hover:border-accent/50 hover:bg-accent/5 text-foreground' : 'border-accent/30 hover:border-accent hover:bg-accent/10 text-black'} px-16 py-8 text-[10px] tracking-[0.35em] uppercase font-extralight transition-all duration-1000 hover:scale-105 hover:shadow-[0_0_40px_rgba(212,181,116,0.2)]`}
             >
               {t.catalog}
             </Button>

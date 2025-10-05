@@ -10,81 +10,110 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
   const t = translations;
 
   return (
-    <section className={`py-40 ${theme === 'dark' ? 'bg-secondary/20' : 'bg-gray-100'} relative overflow-hidden`}>
-      <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-black to-transparent pointer-events-none z-20" />
-      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
+    <section className="py-48 relative overflow-hidden" style={{
+      background: theme === 'dark'
+        ? 'linear-gradient(135deg, #0a0506 0%, #0f0a0d 25%, #1a0f15 50%, #0f0a0d 75%, #0a0506 100%)'
+        : 'linear-gradient(135deg, #faf8f9 0%, #f5f0f3 25%, #ede5ea 50%, #f5f0f3 75%, #faf8f9 100%)'
+    }}>
+      <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-background to-transparent pointer-events-none z-20" />
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-background to-transparent pointer-events-none z-20" />
       
-      <div 
-        className="absolute inset-0 opacity-30"
-        style={{
-          backgroundImage: "url('https://cdn.poehali.dev/files/96502297-55a5-4f1b-9094-15f929d959bf.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 2400) * 0.3}px)` : 'none',
-        }}
-      />
-      <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-b from-black/80 via-black/60 to-black/80' : 'bg-gradient-to-b from-white/80 via-white/60 to-white/80'}`} />
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div 
+          className="absolute top-1/4 right-1/4 w-[700px] h-[700px] rounded-full blur-[180px]"
+          style={{
+            background: 'radial-gradient(circle, rgba(201,169,97,1) 0%, transparent 70%)',
+            transform: window.innerWidth >= 1024 ? `translate(${Math.sin(scrollY * 0.0005) * 150}px, ${Math.cos(scrollY * 0.0005) * 150}px)` : 'none'
+          }}
+        />
+        <div 
+          className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] rounded-full blur-[160px]"
+          style={{
+            background: 'radial-gradient(circle, rgba(150,100,180,0.8) 0%, transparent 70%)',
+            transform: window.innerWidth >= 1024 ? `translate(${Math.cos(scrollY * 0.0007) * -120}px, ${Math.sin(scrollY * 0.0007) * 120}px)` : 'none'
+          }}
+        />
+      </div>
 
       <div className="container mx-auto px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-24 items-center">
           <div 
             className="relative order-2 lg:order-1 group"
+            style={{
+              perspective: '1200px'
+            }}
           >
             <div 
               className="relative overflow-hidden transition-all duration-1000"
+              style={{
+                transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 3200) * 0.15}px)` : 'none'
+              }}
               onMouseEnter={(e) => {
                 if (window.innerWidth >= 1024) {
-                  e.currentTarget.style.transform = 'translateZ(30px) rotateY(-5deg)';
+                  e.currentTarget.style.transform = `translateZ(40px) rotateY(-8deg) translateY(${(scrollY - 3200) * 0.15}px)`;
                 }
               }}
               onMouseLeave={(e) => {
                 if (window.innerWidth >= 1024) {
-                  e.currentTarget.style.transform = 'translateZ(0px) rotateY(0deg)';
+                  e.currentTarget.style.transform = `translateZ(0px) rotateY(0deg) translateY(${(scrollY - 3200) * 0.15}px)`;
                 }
               }}
             >
-              <img
-                src="https://cdn.poehali.dev/files/96502297-55a5-4f1b-9094-15f929d959bf.jpg"
-                alt="Innovation - Marble texture"
-                className="w-full h-[600px] object-cover transition-all duration-1000 group-hover:scale-105"
-              />
-              <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-t from-black/60 to-transparent' : 'bg-gradient-to-t from-white/60 to-transparent'}`} />
-              <div className={`absolute inset-0 border ${theme === 'dark' ? 'border-accent/20' : 'border-accent/30'} group-hover:border-accent/40 transition-colors duration-700`} />
+              <div className="relative w-full h-[550px] bg-gradient-to-br from-accent/5 via-transparent to-accent/10 backdrop-blur-sm">
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/[0.02] to-transparent" />
+                <div className={`absolute inset-0 border ${theme === 'dark' ? 'border-accent/10' : 'border-accent/20'} group-hover:border-accent/30 transition-colors duration-1000`} />
+                
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center space-y-8 p-12">
+                    <div className="w-24 h-24 mx-auto border border-accent/20 flex items-center justify-center group-hover:border-accent/40 transition-all duration-1000 group-hover:rotate-45">
+                      <div className="text-6xl group-hover:-rotate-45 transition-transform duration-1000">✦</div>
+                    </div>
+                    <div className={`text-sm tracking-[0.3em] uppercase font-extralight ${theme === 'dark' ? 'text-foreground/40' : 'text-black/40'}`}>
+                      Innovation meets artistry
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className={`absolute -bottom-8 -right-8 w-64 h-64 border ${theme === 'dark' ? 'border-accent/10' : 'border-accent/20'} pointer-events-none`} />
+            <div className={`absolute -bottom-12 -right-12 w-72 h-72 border ${theme === 'dark' ? 'border-accent/5' : 'border-accent/10'} pointer-events-none`} />
           </div>
 
-          <div className="space-y-8 order-1 lg:order-2">
+          <div 
+            className="space-y-10 order-1 lg:order-2"
+            style={{
+              transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 3200) * -0.08}px)` : 'none'
+            }}
+          >
             <div>
-              <div className="text-[10px] tracking-[0.4em] text-accent mb-6 uppercase font-light luxury-line inline-block">
+              <div className="text-[9px] tracking-[0.5em] text-accent/60 mb-8 uppercase font-extralight luxury-line inline-block">
                 {t.tag}
               </div>
-              <h3 className={`text-6xl leading-tight font-light tracking-[0.05em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-8`}>
+              <h3 className={`text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] font-extralight tracking-[0.03em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-10`}>
                 {t.title1}
                 <br />
                 <span className="text-gradient-gold">{t.title2}</span>
               </h3>
             </div>
 
-            <p className={`text-base leading-loose ${theme === 'dark' ? 'text-foreground/80' : 'text-black/70'} font-light tracking-wide`}>
+            <p className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/70' : 'text-black/70'} font-extralight tracking-[0.02em]`}>
               {t.desc}
             </p>
 
-            <div className="space-y-6 pt-8">
+            <div className="space-y-8 pt-8">
               {[
                 { icon: "Shield" },
                 { icon: "Sparkles" },
                 { icon: "Leaf" }
               ].map((feature, idx) => (
                 <div key={idx} className="flex items-start gap-6 group cursor-pointer">
-                  <div className={`w-14 h-14 border ${theme === 'dark' ? 'border-accent/20' : 'border-accent/30'} flex items-center justify-center flex-shrink-0 group-hover:border-accent/60 transition-colors duration-500`}>
-                    <Icon name={feature.icon} size={20} className="text-accent" />
+                  <div className={`w-16 h-16 border ${theme === 'dark' ? 'border-accent/10' : 'border-accent/20'} flex items-center justify-center flex-shrink-0 group-hover:border-accent/40 transition-all duration-1000 group-hover:rotate-45`}>
+                    <Icon name={feature.icon} size={22} className="text-accent/70 group-hover:text-accent group-hover:-rotate-45 transition-all duration-1000" />
                   </div>
-                  <div className="pt-1">
-                    <div className={`text-lg font-light tracking-[0.08em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-2`}>
+                  <div className="pt-2">
+                    <div className={`text-xl font-extralight tracking-[0.05em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-2`}>
                       {t.features[idx].title}
                     </div>
-                    <div className={`text-xs tracking-wide ${theme === 'dark' ? 'text-foreground/50' : 'text-black/50'} font-light`}>
+                    <div className={`text-[13px] tracking-[0.01em] leading-relaxed ${theme === 'dark' ? 'text-foreground/50' : 'text-black/50'} font-extralight`}>
                       {t.features[idx].desc}
                     </div>
                   </div>

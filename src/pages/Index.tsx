@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Navigation from "@/components/sections/Navigation";
 import HeroSection from "@/components/sections/HeroSection";
 import PhilosophySection from "@/components/sections/PhilosophySection";
+import EarthSection from "@/components/sections/EarthSection";
 import CollectionsSection from "@/components/sections/CollectionsSection";
 import InnovationSection from "@/components/sections/InnovationSection";
 import ContactSection from "@/components/sections/ContactSection";
@@ -16,6 +17,7 @@ const Index = () => {
   
   const heroRef = useRef<HTMLElement>(null);
   const philosophyRef = useRef<HTMLElement>(null);
+  const earthRef = useRef<HTMLElement>(null);
   const collectionsRef = useRef<HTMLElement>(null);
   const innovationRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
@@ -39,10 +41,11 @@ const Index = () => {
 
   const t = translations[language];
 
-  const scrollToSection = (section: 'hero' | 'philosophy' | 'collections' | 'innovation' | 'contact') => {
+  const scrollToSection = (section: 'hero' | 'philosophy' | 'earth' | 'collections' | 'innovation' | 'contact') => {
     const refs = {
       hero: heroRef,
       philosophy: philosophyRef,
+      earth: earthRef,
       collections: collectionsRef,
       innovation: innovationRef,
       contact: contactRef
@@ -74,13 +77,7 @@ const Index = () => {
         onNavigate={scrollToSection}
       />
 
-      <section 
-        ref={heroRef}
-        className="lg:opacity-100 transition-opacity duration-500"
-        style={window.innerWidth < 1024 ? {
-          opacity: Math.max(0, 1 - scrollY / 800)
-        } : {}}
-      >
+      <section ref={heroRef}>
         <HeroSection 
           scrollY={scrollY}
           theme={theme}
@@ -89,13 +86,7 @@ const Index = () => {
         />
       </section>
 
-      <section 
-        ref={philosophyRef}
-        className="lg:opacity-100 transition-opacity duration-500"
-        style={window.innerWidth < 1024 ? {
-          opacity: Math.max(0.3, Math.min(1, (scrollY - 400) / 400)) * Math.max(0, 1 - (scrollY - 1400) / 600)
-        } : {}}
-      >
+      <section ref={philosophyRef}>
         <PhilosophySection 
           scrollY={scrollY}
           theme={theme}
@@ -103,25 +94,20 @@ const Index = () => {
         />
       </section>
 
-      <section 
-        ref={collectionsRef}
-        className="lg:opacity-100 transition-opacity duration-500"
-        style={window.innerWidth < 1024 ? {
-          opacity: Math.max(0.3, Math.min(1, (scrollY - 1200) / 400)) * Math.max(0, 1 - (scrollY - 2400) / 600)
-        } : {}}
-      >
+      <section ref={earthRef}>
+        <EarthSection 
+          scrollY={scrollY}
+          theme={theme}
+        />
+      </section>
+
+      <section ref={collectionsRef}>
         <CollectionsSection 
           translations={t.collections}
         />
       </section>
 
-      <section 
-        ref={innovationRef}
-        className="lg:opacity-100 transition-opacity duration-500"
-        style={window.innerWidth < 1024 ? {
-          opacity: Math.max(0.3, Math.min(1, (scrollY - 2200) / 400)) * Math.max(0, 1 - (scrollY - 3600) / 600)
-        } : {}}
-      >
+      <section ref={innovationRef}>
         <InnovationSection 
           scrollY={scrollY}
           theme={theme}
@@ -129,13 +115,7 @@ const Index = () => {
         />
       </section>
 
-      <section 
-        ref={contactRef}
-        className="lg:opacity-100 transition-opacity duration-500"
-        style={window.innerWidth < 1024 ? {
-          opacity: Math.max(0.3, Math.min(1, (scrollY - 3400) / 400))
-        } : {}}
-      >
+      <section ref={contactRef}>
         <ContactSection 
           scrollY={scrollY}
           theme={theme}

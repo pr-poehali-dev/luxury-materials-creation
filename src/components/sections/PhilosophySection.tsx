@@ -32,13 +32,18 @@ const PhilosophySection = ({ scrollY, theme, translations }: PhilosophySectionPr
 
       <div className="container mx-auto px-8 relative z-10">
         <div className="grid lg:grid-cols-1 gap-24 items-center max-w-5xl mx-auto">
-          <div className="space-y-12 text-center">
+          <div 
+            className="space-y-12 text-center"
+            style={{
+              transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 900) * -0.1}px)` : 'none'
+            }}
+          >
             <div>
-              <div className="text-[9px] tracking-[0.5em] text-accent/80 mb-8 uppercase font-light luxury-line inline-block">
+              <div className="text-[9px] tracking-[0.5em] text-accent/80 mb-8 uppercase font-extralight luxury-line inline-block">
                 {t.tag}
               </div>
               <h3 
-                className={`text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] font-light tracking-[0.03em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-12`}
+                className={`text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] font-extralight tracking-[0.03em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-12`}
               >
                 <span className="lg:inline-block" style={window.innerWidth >= 1024 ? { display: 'inline-block', transform: 'translateZ(10px)' } : {}}>{t.title1}</span>
                 <br />
@@ -47,13 +52,13 @@ const PhilosophySection = ({ scrollY, theme, translations }: PhilosophySectionPr
             </div>
 
             <div className="space-y-8 max-w-3xl mx-auto">
-              <p className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/70' : 'text-black/70'} font-light tracking-[0.02em]`}>
+              <p className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/70' : 'text-black/70'} font-extralight tracking-[0.02em]`}>
                 {t.desc1}
               </p>
-              <p className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/70' : 'text-black/70'} font-light tracking-[0.02em]`}>
+              <p className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/70' : 'text-black/70'} font-extralight tracking-[0.02em]`}>
                 {t.desc2}
               </p>
-              <p className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/80' : 'text-black/80'} font-light tracking-[0.02em] italic`}>
+              <p className={`text-[15px] leading-[2] ${theme === 'dark' ? 'text-foreground/80' : 'text-black/80'} font-extralight tracking-[0.02em] italic`}>
                 {t.desc3}
               </p>
             </div>

@@ -16,7 +16,7 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
       <div 
         className={theme === 'dark' ? "absolute inset-0 bg-black" : "absolute inset-0 bg-gray-50"}
         style={{
-          transform: window.innerWidth >= 1024 ? `translateY(${scrollY * 0.5}px)` : 'none',
+          transform: window.innerWidth >= 1024 ? `translateY(${scrollY * 0.6}px) scale(${1 + scrollY * 0.0002})` : 'none',
         }}
       >
         <img
@@ -32,8 +32,8 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
       <div 
         className="relative z-10 text-center px-6 max-w-5xl mx-auto"
         style={{
-          transform: window.innerWidth >= 1024 ? `translateY(${scrollY * 0.2}px)` : 'none',
-          opacity: window.innerWidth >= 1024 ? 1 - scrollY / 600 : 1,
+          transform: window.innerWidth >= 1024 ? `translateY(${scrollY * 0.25}px) scale(${1 - scrollY * 0.0001})` : 'none',
+          opacity: window.innerWidth >= 1024 ? Math.max(0, 1 - scrollY / 600) : 1,
         }}
       >
         <div className="mb-16 animate-fade-in">

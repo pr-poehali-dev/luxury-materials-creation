@@ -49,24 +49,23 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
             className="relative order-2 lg:order-1 flex items-center justify-center"
           >
             <div 
-              className="relative transition-all duration-700 hover:scale-110"
+              className="relative transition-all duration-700 hover:scale-105"
               style={{
-                transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 3200) * 0.1}px) rotate(${Math.sin(scrollY * 0.001) * 3}deg)` : 'none',
-                filter: 'drop-shadow(0 30px 80px rgba(201,169,97,0.4))'
+                transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 3200) * 0.1}px) rotate(${Math.sin(scrollY * 0.001) * 2}deg)` : 'none',
               }}
             >
-              <div className="relative w-[450px] h-[450px]">
-                <div className="absolute inset-0 bg-gradient-radial from-accent/20 via-accent/5 to-transparent blur-3xl" />
+              <div className="relative w-[500px] h-[500px]">
+                <div className="absolute inset-0 bg-gradient-radial from-accent/30 via-accent/10 to-transparent blur-[100px] scale-150" />
                 <img 
                   src="https://cdn.poehali.dev/files/e94159c8-7a61-4b3e-8c89-b05ce771a640.jpg" 
                   alt="Luxury Turtle" 
-                  className="relative z-10 w-full h-full object-contain transition-all duration-700 hover:rotate-3"
+                  className="relative z-10 w-full h-full object-contain mix-blend-lighten transition-all duration-700 hover:rotate-2"
                   style={{
-                    filter: 'contrast(1.1) brightness(1.05)'
+                    filter: 'contrast(1.3) brightness(1.2) drop-shadow(0 40px 100px rgba(201,169,97,0.6)) drop-shadow(0 0 60px rgba(201,169,97,0.4))'
                   }}
                 />
-                <div className="absolute -bottom-8 -right-8 w-64 h-64 border border-accent/10 pointer-events-none" />
-                <div className="absolute -top-8 -left-8 w-48 h-48 border border-accent/5 pointer-events-none" />
+                <div className="absolute -bottom-12 -right-12 w-80 h-80 border border-accent/10 pointer-events-none" />
+                <div className="absolute -top-12 -left-12 w-60 h-60 border border-accent/5 pointer-events-none" />
               </div>
             </div>
           </motion.div>

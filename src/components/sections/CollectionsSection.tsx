@@ -9,30 +9,30 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
   const t = translations;
 
   return (
-    <section className="py-40 relative overflow-hidden" style={{ 
-      background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)'
+    <section className="py-48 relative overflow-hidden" style={{ 
+      background: 'linear-gradient(135deg, #010101 0%, #080808 50%, #010101 100%)'
     }}>
-      <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-secondary/30 to-transparent pointer-events-none z-20" />
-      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
+      <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-background to-transparent pointer-events-none z-20" />
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-background to-transparent pointer-events-none z-20" />
       
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent rounded-full blur-[120px]" />
+      <div className="absolute inset-0 opacity-[0.015]">
+        <div className="absolute top-1/3 left-1/3 w-[600px] h-[600px] bg-accent rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/3 right-1/3 w-[600px] h-[600px] bg-accent rounded-full blur-[150px]" />
       </div>
       <div className="container mx-auto px-8 relative z-10">
-        <div className="text-center mb-24">
-          <div className="text-[10px] tracking-[0.4em] text-accent mb-6 uppercase font-light luxury-line inline-block">
+        <div className="text-center mb-32">
+          <div className="text-[9px] tracking-[0.5em] text-accent/60 mb-8 uppercase font-extralight luxury-line inline-block">
             {t.tag}
           </div>
           <h3 
-            className="text-6xl font-light tracking-[0.05em] text-white mb-6"
+            className="text-[clamp(2.5rem,6vw,5rem)] font-extralight tracking-[0.03em] text-white/95 mb-6"
           >
             <span className="lg:inline-block" style={window.innerWidth >= 1024 ? { display: 'inline-block', transform: 'translateZ(25px)' } : {}}>{t.title}</span>
           </h3>
-          <div className="w-24 h-px bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mt-8" />
+          <div className="w-32 h-[0.5px] bg-gradient-to-r from-transparent via-accent/30 to-transparent mx-auto mt-12" />
         </div>
 
-        <div className="grid md:grid-cols-3 gap-1">
+        <div className="grid md:grid-cols-3 gap-px">
           {[
             { icon: "Gem" },
             { icon: "Droplets" },
@@ -40,7 +40,7 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
           ].map((item, idx) => (
             <Card
               key={idx}
-              className="bg-white/5 backdrop-blur-sm border-0 p-12 lg:hover:bg-white/10 transition-all duration-700 group cursor-pointer relative overflow-hidden lg:hover:shadow-[0_0_60px_rgba(201,169,97,0.15)]"
+              className="bg-white/[0.02] backdrop-blur-md border-0 p-14 lg:hover:bg-white/[0.05] transition-all duration-1000 group cursor-pointer relative overflow-hidden lg:hover:shadow-[0_0_80px_rgba(212,181,116,0.1)]"
               onMouseEnter={(e) => {
                 if (window.innerWidth >= 1024) {
                   e.currentTarget.style.transform = 'perspective(1000px) translateZ(20px) rotateY(2deg)';
@@ -52,32 +52,32 @@ const CollectionsSection = ({ translations }: CollectionsSectionProps) => {
                 }
               }}
             >
-              <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
+              <div className="absolute top-0 left-0 w-full h-[0.5px] bg-gradient-to-r from-transparent via-accent/10 to-transparent" />
+              <div className="absolute bottom-0 left-0 w-full h-[0.5px] bg-gradient-to-r from-transparent via-accent/10 to-transparent" />
               
-              <div className="mb-8 relative">
-                <div className="w-20 h-20 border border-accent/20 flex items-center justify-center group-hover:border-accent/40 transition-colors duration-700 group-hover:rotate-45 transition-transform">
-                  <Icon name={item.icon} size={32} className="text-accent group-hover:-rotate-45 transition-transform duration-700" />
+              <div className="mb-10 relative">
+                <div className="w-20 h-20 border border-accent/10 flex items-center justify-center group-hover:border-accent/25 transition-all duration-1000 group-hover:rotate-45">
+                  <Icon name={item.icon} size={28} className="text-accent/70 group-hover:text-accent group-hover:-rotate-45 transition-all duration-1000" />
                 </div>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <div>
-                  <h4 className="text-2xl font-light tracking-[0.08em] text-white mb-2">
+                  <h4 className="text-[26px] font-extralight tracking-[0.05em] text-white/95 mb-3">
                     {t.items[idx].title}
                   </h4>
-                  <div className="text-[10px] tracking-[0.25em] text-accent uppercase font-light">
+                  <div className="text-[9px] tracking-[0.3em] text-accent/70 uppercase font-extralight">
                     {t.items[idx].subtitle}
                   </div>
                 </div>
-                <p className="text-sm leading-relaxed text-white/70 font-light tracking-wide">
+                <p className="text-[13px] leading-[1.9] text-white/60 font-extralight tracking-[0.01em]">
                   {t.items[idx].desc}
                 </p>
               </div>
 
-              <div className="mt-8 flex items-center text-[10px] tracking-[0.3em] text-accent uppercase font-light group-hover:tracking-[0.35em] transition-all duration-500">
+              <div className="mt-10 flex items-center text-[9px] tracking-[0.35em] text-accent/60 uppercase font-extralight group-hover:text-accent/80 group-hover:tracking-[0.4em] transition-all duration-700">
                 En savoir plus
-                <Icon name="ArrowRight" size={14} className="ml-2 group-hover:translate-x-2 transition-transform duration-500" />
+                <Icon name="ArrowRight" size={12} className="ml-3 group-hover:translate-x-2 transition-transform duration-700" />
               </div>
             </Card>
           ))}

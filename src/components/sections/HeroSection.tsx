@@ -36,16 +36,16 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
           opacity: window.innerWidth >= 1024 ? 1 - scrollY / 600 : 1,
         }}
       >
-        <div className="mb-12 animate-fade-in">
+        <div className="mb-16 animate-fade-in">
           <div className="inline-block">
-            <div className="text-[10px] tracking-[0.4em] text-accent mb-6 uppercase font-light luxury-line">
+            <div className="text-[9px] tracking-[0.5em] text-accent/70 mb-6 uppercase font-extralight luxury-line">
               Depuis 1999
             </div>
           </div>
         </div>
         
         <h2 
-          className={`text-[clamp(3rem,10vw,9rem)] leading-[0.9] font-light tracking-[0.08em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-8 animate-fade-in`}
+          className={`text-[clamp(3rem,10vw,9rem)] leading-[0.85] font-extralight tracking-[0.1em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-12 animate-fade-in`}
           style={window.innerWidth >= 1024 ? {
             transform: `perspective(1000px) rotateX(${scrollY * 0.02}deg)`,
             transformStyle: 'preserve-3d'
@@ -56,7 +56,7 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
           <span className="text-gradient-gold" style={window.innerWidth >= 1024 ? { display: 'inline-block', transform: 'translateZ(30px)' } : {}}>DE PIERRE</span>
         </h2>
 
-        <p className={`text-lg tracking-[0.15em] ${theme === 'dark' ? 'text-foreground/70' : 'text-black/70'} mb-16 max-w-2xl mx-auto font-light leading-relaxed animate-slide-up`}>
+        <p className={`text-base tracking-[0.2em] ${theme === 'dark' ? 'text-foreground/60' : 'text-black/60'} mb-20 max-w-2xl mx-auto font-extralight leading-[1.8] animate-slide-up`}>
           {t.subtitle}
         </p>
 
@@ -64,16 +64,16 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
           <Button
             size="lg"
             onClick={() => onNavigate('collections')}
-            className={`bg-transparent border ${theme === 'dark' ? 'border-accent/40 hover:border-accent hover:bg-accent/5 text-foreground' : 'border-accent/50 hover:border-accent hover:bg-accent/10 text-black'} px-14 py-7 text-xs tracking-[0.3em] uppercase font-light transition-all duration-700 hover:shadow-[0_0_40px_rgba(201,169,97,0.25)] hover:scale-105`}
+            className={`bg-transparent border ${theme === 'dark' ? 'border-accent/20 hover:border-accent/50 hover:bg-accent/5 text-foreground' : 'border-accent/30 hover:border-accent hover:bg-accent/10 text-black'} px-16 py-8 text-[10px] tracking-[0.35em] uppercase font-extralight transition-all duration-1000 hover:shadow-[0_0_50px_rgba(212,181,116,0.2)] hover:scale-105`}
           >
             {t.explore}
           </Button>
           <button 
             onClick={() => onNavigate('philosophy')}
-            className={`text-xs tracking-[0.3em] ${theme === 'dark' ? 'text-foreground/60' : 'text-black/60'} hover:text-accent uppercase font-light transition-all duration-500 flex items-center gap-3 group`}
+            className={`text-[10px] tracking-[0.35em] ${theme === 'dark' ? 'text-foreground/50' : 'text-black/50'} hover:text-accent/80 uppercase font-extralight transition-all duration-700 flex items-center gap-3 group`}
           >
             {t.discover}
-            <Icon name="ArrowRight" size={16} className="group-hover:translate-x-1 transition-transform duration-500" />
+            <Icon name="ArrowRight" size={14} className="group-hover:translate-x-1 transition-transform duration-700" />
           </button>
         </div>
       </div>

@@ -7,12 +7,13 @@ export const translations = {
       discover: "Discover"
     },
     philosophy: {
-      tag: "Our Vision",
-      title1: "The art of building",
-      title2: "eternity",
-      desc1: "For over a quarter of a century, Maison de Pierre embodies excellence in the selection of exceptional architectural materials. Each stone, each pigment is chosen with a jeweler's precision.",
-      desc2: "We don't sell materials. We offer fragments of eternity, destined for projects that transcend time.",
-      stats: ["Years of excellence", "Timeless quality", "Custom made"]
+      tag: "Brand Philosophy",
+      title1: "Beyond materials,",
+      title2: "legacy",
+      desc1: "Maison de Pierre exists for those who understand that true luxury isn't purchased — it's cultivated. For a quarter-century, we've served visionaries who refuse to compromise, who seek not trends but timelessness.",
+      desc2: "We are curators of permanence. Every partnership we forge, every project we undertake, becomes part of an enduring narrative — one where excellence is not an achievement, but a tradition.",
+      desc3: "This is not a business of transactions. It is a covenant between artisan and patron, a commitment to creating spaces that outlive us all.",
+      stats: ["Years of excellence", "Timeless heritage", "Bespoke mastery"]
     },
     collections: {
       tag: "Exclusive Collections",
@@ -72,12 +73,13 @@ export const translations = {
       discover: "Открыть"
     },
     philosophy: {
-      tag: "Наше видение",
-      title1: "Искусство строить",
-      title2: "вечность",
-      desc1: "Более четверти века Maison de Pierre воплощает совершенство в подборе исключительных архитектурных материалов. Каждый камень, каждый пигмент выбирается с точностью ювелира.",
-      desc2: "Мы не продаём материалы. Мы предлагаем фрагменты вечности, предназначенные для проектов, которые выходят за рамки времени.",
-      stats: ["Лет совершенства", "Вечное качество", "На заказ"]
+      tag: "Философия бренда",
+      title1: "Не материалы,",
+      title2: "наследие",
+      desc1: "Maison de Pierre создан для тех, кто понимает: истинная роскошь не покупается — она взращивается. Четверть века мы служим визионерам, отвергающим компромиссы, ищущим не тренды, а вневременность.",
+      desc2: "Мы — хранители постоянства. Каждое партнёрство, каждый проект становятся частью вечного повествования, где совершенство — не достижение, а традиция.",
+      desc3: "Это не бизнес сделок. Это завет между мастером и покровителем, обязательство создавать пространства, которые переживут нас всех.",
+      stats: ["Лет совершенства", "Вечное наследие", "Уникальное мастерство"]
     },
     collections: {
       tag: "Эксклюзивные коллекции",

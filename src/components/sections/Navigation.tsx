@@ -48,9 +48,10 @@ const Navigation = ({
                 <img 
                   src="https://cdn.poehali.dev/files/e94159c8-7a61-4b3e-8c89-b05ce771a640.jpg" 
                   alt="Logo" 
-                  className="w-full h-full object-contain mix-blend-lighten"
+                  className="w-full h-full object-contain"
                   style={{
-                    filter: 'contrast(1.3) brightness(1.2) drop-shadow(0 4px 20px rgba(201,169,97,0.5))'
+                    filter: 'contrast(1.3) brightness(1.2) drop-shadow(0 4px 20px rgba(201,169,97,0.5)) invert(1)',
+                    mixBlendMode: 'screen'
                   }}
                 />
               </div>

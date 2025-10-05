@@ -59,9 +59,10 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
                 <img 
                   src="https://cdn.poehali.dev/files/e94159c8-7a61-4b3e-8c89-b05ce771a640.jpg" 
                   alt="Luxury Turtle" 
-                  className="relative z-10 w-full h-full object-contain mix-blend-lighten transition-all duration-700 hover:rotate-2"
+                  className="relative z-10 w-full h-full object-contain transition-all duration-700 hover:rotate-2"
                   style={{
-                    filter: 'contrast(1.3) brightness(1.2) drop-shadow(0 40px 100px rgba(201,169,97,0.6)) drop-shadow(0 0 60px rgba(201,169,97,0.4))'
+                    filter: 'contrast(1.3) brightness(1.2) drop-shadow(0 40px 100px rgba(201,169,97,0.6)) drop-shadow(0 0 60px rgba(201,169,97,0.4)) invert(1)',
+                    mixBlendMode: 'screen'
                   }}
                 />
                 <div className="absolute -bottom-12 -right-12 w-80 h-80 border border-accent/10 pointer-events-none" />

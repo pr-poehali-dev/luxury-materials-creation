@@ -61,7 +61,7 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
                   alt="Luxury Turtle" 
                   className="relative z-10 w-full h-full object-contain transition-all duration-700 hover:rotate-2"
                   style={{
-                    filter: 'drop-shadow(0 40px 100px rgba(201,169,97,0.6)) drop-shadow(0 0 60px rgba(201,169,97,0.4))'
+                    filter: 'brightness(0.3) sepia(1) saturate(5) hue-rotate(10deg) drop-shadow(0 40px 100px rgba(201,169,97,0.9)) drop-shadow(0 0 60px rgba(201,169,97,0.6))'
                   }}
                 />
                 <div className="absolute -bottom-12 -right-12 w-80 h-80 border border-accent/10 pointer-events-none" />

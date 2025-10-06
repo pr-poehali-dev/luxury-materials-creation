@@ -50,7 +50,7 @@ const Navigation = ({
                   alt="Logo" 
                   className="w-full h-full object-contain"
                   style={{
-                    filter: 'drop-shadow(0 4px 20px rgba(201,169,97,0.5))'
+                    filter: 'brightness(0.3) sepia(1) saturate(5) hue-rotate(10deg) drop-shadow(0 4px 20px rgba(201,169,97,0.8))'
                   }}
                 />
               </div>

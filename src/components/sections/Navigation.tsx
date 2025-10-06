@@ -46,12 +46,11 @@ const Navigation = ({
             >
               <div className="w-14 h-14 transition-all duration-700 group-hover:scale-110 group-hover:rotate-3">
                 <img 
-                  src="https://cdn.poehali.dev/files/e94159c8-7a61-4b3e-8c89-b05ce771a640.jpg" 
+                  src="https://cdn.poehali.dev/files/cefbdf54-4b72-4cfb-8891-167c2554785e.png" 
                   alt="Logo" 
                   className="w-full h-full object-contain"
                   style={{
-                    filter: 'contrast(2) brightness(0.8) drop-shadow(0 4px 20px rgba(201,169,97,0.5))',
-                    mixBlendMode: 'multiply'
+                    filter: 'drop-shadow(0 4px 20px rgba(201,169,97,0.5))'
                   }}
                 />
               </div>

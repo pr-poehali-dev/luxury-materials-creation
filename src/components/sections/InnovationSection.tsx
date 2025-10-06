@@ -57,12 +57,11 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
               <div className="relative w-[500px] h-[500px]">
                 <div className="absolute inset-0 bg-gradient-radial from-accent/30 via-accent/10 to-transparent blur-[100px] scale-150" />
                 <img 
-                  src="https://cdn.poehali.dev/files/e94159c8-7a61-4b3e-8c89-b05ce771a640.jpg" 
+                  src="https://cdn.poehali.dev/files/cefbdf54-4b72-4cfb-8891-167c2554785e.png" 
                   alt="Luxury Turtle" 
                   className="relative z-10 w-full h-full object-contain transition-all duration-700 hover:rotate-2"
                   style={{
-                    filter: 'contrast(2) brightness(0.8) drop-shadow(0 40px 100px rgba(201,169,97,0.6)) drop-shadow(0 0 60px rgba(201,169,97,0.4))',
-                    mixBlendMode: 'multiply'
+                    filter: 'drop-shadow(0 40px 100px rgba(201,169,97,0.6)) drop-shadow(0 0 60px rgba(201,169,97,0.4))'
                   }}
                 />
                 <div className="absolute -bottom-12 -right-12 w-80 h-80 border border-accent/10 pointer-events-none" />

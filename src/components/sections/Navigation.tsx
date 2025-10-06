@@ -46,7 +46,7 @@ const Navigation = ({
             >
               <div className="w-14 h-14 transition-all duration-700 group-hover:scale-110 group-hover:rotate-3">
                 <img 
-                  src="https://cdn.poehali.dev/files/cefbdf54-4b72-4cfb-8891-167c2554785e.png" 
+                  src="https://cdn.poehali.dev/files/aea1c5e5-3e59-4e0f-b777-d253aa730be9.png" 
                   alt="Logo" 
                   className="w-full h-full object-contain"
                   style={{

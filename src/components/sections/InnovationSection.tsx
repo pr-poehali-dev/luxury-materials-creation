@@ -57,7 +57,7 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
               <div className="relative w-[500px] h-[500px]">
                 <div className="absolute inset-0 bg-gradient-radial from-accent/30 via-accent/10 to-transparent blur-[100px] scale-150" />
                 <img 
-                  src="https://cdn.poehali.dev/files/cefbdf54-4b72-4cfb-8891-167c2554785e.png" 
+                  src="https://cdn.poehali.dev/files/aea1c5e5-3e59-4e0f-b777-d253aa730be9.png" 
                   alt="Luxury Turtle" 
                   className="relative z-10 w-full h-full object-contain transition-all duration-700 hover:rotate-2"
                   style={{

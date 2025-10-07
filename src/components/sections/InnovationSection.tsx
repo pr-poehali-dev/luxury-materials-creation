@@ -43,30 +43,48 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
         <div className="grid lg:grid-cols-2 gap-24 items-center">
           <motion.div 
             ref={leftRef as any}
-            initial={{ opacity: 0, x: -200, rotate: -20 }}
-            animate={leftVisible ? { opacity: 1, x: 0, rotate: 0 } : {}}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={leftVisible ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1.2, ease: 'easeOut' }}
             className="relative order-2 lg:order-1 flex items-center justify-center"
           >
-            <div 
-              className="relative transition-all duration-700 hover:scale-105"
-              style={{
-                transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 3200) * 0.1}px) rotate(${Math.sin(scrollY * 0.001) * 2}deg)` : 'none',
-              }}
-            >
-              <div className="relative w-[500px] h-[500px]">
-                <div className="absolute inset-0 bg-gradient-radial from-accent/30 via-accent/10 to-transparent blur-[100px] scale-150" />
-                <img 
-                  src="https://cdn.poehali.dev/files/aea1c5e5-3e59-4e0f-b777-d253aa730be9.png" 
-                  alt="Luxury Turtle" 
-                  className="relative z-10 w-full h-full object-contain transition-all duration-700 hover:rotate-2"
+            <div className="relative w-[500px] h-[500px]">
+              <div className="absolute inset-0 bg-gradient-radial from-accent/20 via-accent/5 to-transparent blur-[120px] scale-150 animate-pulse" />
+              
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div 
+                  className="absolute w-[350px] h-[350px] border border-accent/20 transition-all duration-700 hover:border-accent/40"
                   style={{
-                    filter: 'brightness(0.3) sepia(1) saturate(5) hue-rotate(10deg) drop-shadow(0 40px 100px rgba(201,169,97,0.9)) drop-shadow(0 0 60px rgba(201,169,97,0.6))'
+                    transform: window.innerWidth >= 1024 ? `rotate(${scrollY * 0.05}deg)` : 'none'
                   }}
                 />
-                <div className="absolute -bottom-12 -right-12 w-80 h-80 border border-accent/10 pointer-events-none" />
-                <div className="absolute -top-12 -left-12 w-60 h-60 border border-accent/5 pointer-events-none" />
+                <div 
+                  className="absolute w-[280px] h-[280px] border border-accent/15"
+                  style={{
+                    transform: window.innerWidth >= 1024 ? `rotate(${-scrollY * 0.08}deg)` : 'none'
+                  }}
+                />
+                <div 
+                  className="absolute w-[210px] h-[210px] border border-accent/10"
+                  style={{
+                    transform: window.innerWidth >= 1024 ? `rotate(${scrollY * 0.12}deg)` : 'none'
+                  }}
+                />
               </div>
+
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="relative w-32 h-32">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent via-accent/60 to-accent/40 blur-xl animate-pulse" />
+                  <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-br from-accent/80 to-accent/40' : 'bg-gradient-to-br from-accent to-accent/60'} backdrop-blur-sm border border-accent/30 flex items-center justify-center group cursor-pointer transition-all duration-700 hover:scale-110`}>
+                    <Icon name="Gem" size={48} className="text-black/80 group-hover:rotate-12 transition-all duration-700" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute top-10 right-10 w-2 h-2 bg-accent rounded-full animate-ping" />
+              <div className="absolute bottom-20 left-16 w-1.5 h-1.5 bg-accent/60 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
+              <div className="absolute top-1/3 left-10 w-1 h-1 bg-accent/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+              <div className="absolute bottom-10 right-20 w-2 h-2 bg-accent/80 rounded-full animate-ping" style={{ animationDelay: '1.5s' }} />
             </div>
           </motion.div>
 

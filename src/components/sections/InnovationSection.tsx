@@ -1,6 +1,7 @@
 import Icon from "@/components/ui/icon";
 import { motion } from 'framer-motion';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { useState, useEffect } from 'react';
 
 interface InnovationSectionProps {
   scrollY: number;
@@ -12,6 +13,11 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
   const t = translations;
   const { ref: leftRef, isVisible: leftVisible } = useScrollReveal({ threshold: 0.2 });
   const { ref: rightRef, isVisible: rightVisible } = useScrollReveal({ threshold: 0.2 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 1024);
+  }, []);
 
   return (
     <section className="py-48 relative overflow-hidden" style={{
@@ -22,22 +28,24 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
       <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-background to-transparent pointer-events-none z-20" />
       <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-background to-transparent pointer-events-none z-20" />
       
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div 
-          className="absolute top-1/4 right-1/4 w-[700px] h-[700px] rounded-full blur-[180px]"
-          style={{
-            background: 'radial-gradient(circle, rgba(201,169,97,1) 0%, transparent 70%)',
-            transform: window.innerWidth >= 1024 ? `translate(${Math.sin(scrollY * 0.0005) * 150}px, ${Math.cos(scrollY * 0.0005) * 150}px)` : 'none'
-          }}
-        />
-        <div 
-          className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] rounded-full blur-[160px]"
-          style={{
-            background: 'radial-gradient(circle, rgba(150,100,180,0.8) 0%, transparent 70%)',
-            transform: window.innerWidth >= 1024 ? `translate(${Math.cos(scrollY * 0.0007) * -120}px, ${Math.sin(scrollY * 0.0007) * 120}px)` : 'none'
-          }}
-        />
-      </div>
+      {!isMobile && (
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div 
+            className="absolute top-1/4 right-1/4 w-[700px] h-[700px] rounded-full blur-[180px]"
+            style={{
+              background: 'radial-gradient(circle, rgba(201,169,97,1) 0%, transparent 70%)',
+              transform: `translate(${Math.sin(scrollY * 0.0005) * 150}px, ${Math.cos(scrollY * 0.0005) * 150}px)`
+            }}
+          />
+          <div 
+            className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] rounded-full blur-[160px]"
+            style={{
+              background: 'radial-gradient(circle, rgba(150,100,180,0.8) 0%, transparent 70%)',
+              transform: `translate(${Math.cos(scrollY * 0.0007) * -120}px, ${Math.sin(scrollY * 0.0007) * 120}px)`
+            }}
+          />
+        </div>
+      )}
 
       <div className="container mx-auto px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-24 items-center">
@@ -48,43 +56,49 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
             transition={{ duration: 1.2, ease: 'easeOut' }}
             className="relative order-2 lg:order-1 flex items-center justify-center"
           >
-            <div className="relative w-[500px] h-[500px]">
-              <div className="absolute inset-0 bg-gradient-radial from-accent/20 via-accent/5 to-transparent blur-[120px] scale-150 animate-pulse" />
+            <div className="relative w-full max-w-[500px] h-[300px] lg:h-[500px]">
+              {!isMobile && <div className="absolute inset-0 bg-gradient-radial from-accent/20 via-accent/5 to-transparent blur-[120px] scale-150 animate-pulse" />}
               
               <div className="absolute inset-0 flex items-center justify-center">
                 <div 
-                  className="absolute w-[350px] h-[350px] border border-accent/20 transition-all duration-700 hover:border-accent/40"
+                  className="absolute w-[200px] h-[200px] lg:w-[350px] lg:h-[350px] border border-accent/20 transition-all duration-700 hover:border-accent/40"
                   style={{
-                    transform: window.innerWidth >= 1024 ? `rotate(${scrollY * 0.05}deg)` : 'none'
+                    transform: !isMobile ? `rotate(${scrollY * 0.05}deg)` : 'none'
                   }}
                 />
                 <div 
-                  className="absolute w-[280px] h-[280px] border border-accent/15"
+                  className="absolute w-[150px] h-[150px] lg:w-[280px] lg:h-[280px] border border-accent/15"
                   style={{
-                    transform: window.innerWidth >= 1024 ? `rotate(${-scrollY * 0.08}deg)` : 'none'
+                    transform: !isMobile ? `rotate(${-scrollY * 0.08}deg)` : 'none'
                   }}
                 />
-                <div 
-                  className="absolute w-[210px] h-[210px] border border-accent/10"
-                  style={{
-                    transform: window.innerWidth >= 1024 ? `rotate(${scrollY * 0.12}deg)` : 'none'
-                  }}
-                />
+                {!isMobile && (
+                  <div 
+                    className="absolute w-[210px] h-[210px] border border-accent/10"
+                    style={{
+                      transform: `rotate(${scrollY * 0.12}deg)`
+                    }}
+                  />
+                )}
               </div>
 
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative w-32 h-32">
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent via-accent/60 to-accent/40 blur-xl animate-pulse" />
+                <div className="relative w-24 h-24 lg:w-32 lg:h-32">
+                  {!isMobile && <div className="absolute inset-0 bg-gradient-to-br from-accent via-accent/60 to-accent/40 blur-xl animate-pulse" />}
                   <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-br from-accent/80 to-accent/40' : 'bg-gradient-to-br from-accent to-accent/60'} backdrop-blur-sm border border-accent/30 flex items-center justify-center group cursor-pointer transition-all duration-700 hover:scale-110`}>
-                    <Icon name="Gem" size={48} className="text-black/80 group-hover:rotate-12 transition-all duration-700" />
+                    <Icon name="Gem" size={isMobile ? 36 : 48} className="text-black/80 group-hover:rotate-12 transition-all duration-700" />
                   </div>
                 </div>
               </div>
 
-              <div className="absolute top-10 right-10 w-2 h-2 bg-accent rounded-full animate-ping" />
-              <div className="absolute bottom-20 left-16 w-1.5 h-1.5 bg-accent/60 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
-              <div className="absolute top-1/3 left-10 w-1 h-1 bg-accent/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-              <div className="absolute bottom-10 right-20 w-2 h-2 bg-accent/80 rounded-full animate-ping" style={{ animationDelay: '1.5s' }} />
+              {!isMobile && (
+                <>
+                  <div className="absolute top-10 right-10 w-2 h-2 bg-accent rounded-full animate-ping" />
+                  <div className="absolute bottom-20 left-16 w-1.5 h-1.5 bg-accent/60 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
+                  <div className="absolute top-1/3 left-10 w-1 h-1 bg-accent/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+                  <div className="absolute bottom-10 right-20 w-2 h-2 bg-accent/80 rounded-full animate-ping" style={{ animationDelay: '1.5s' }} />
+                </>
+              )}
             </div>
           </motion.div>
 
@@ -95,7 +109,7 @@ const InnovationSection = ({ scrollY, theme, translations }: InnovationSectionPr
             transition={{ duration: 0.9, ease: 'easeOut' }}
             className="space-y-10 order-1 lg:order-2"
             style={{
-              transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 3200) * -0.08}px)` : 'none'
+              transform: !isMobile ? `translateY(${(scrollY - 3200) * -0.08}px)` : 'none'
             }}
           >
             <div>

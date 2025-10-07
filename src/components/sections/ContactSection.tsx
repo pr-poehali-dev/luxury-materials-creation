@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from 'framer-motion';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { useState, useEffect } from 'react';
 
 interface ContactSectionProps {
   scrollY: number;
@@ -11,19 +12,26 @@ interface ContactSectionProps {
 const ContactSection = ({ scrollY, theme, translations }: ContactSectionProps) => {
   const t = translations;
   const { ref: contentRef, isVisible: contentVisible } = useScrollReveal({ threshold: 0.2 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 1024);
+  }, []);
 
   return (
     <section className={`py-40 ${theme === 'dark' ? 'bg-black' : 'bg-white'} relative`}>
       <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-black to-transparent pointer-events-none z-20" />
       
-      <div className="absolute inset-0 opacity-10">
-        <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/30 rounded-full blur-[150px]"
-          style={{
-            transform: `translate(-50%, -50%) scale(${1 + scrollY * 0.0001})`,
-          }}
-        />
-      </div>
+      {!isMobile && (
+        <div className="absolute inset-0 opacity-10">
+          <div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/30 rounded-full blur-[150px]"
+            style={{
+              transform: `translate(-50%, -50%) scale(${1 + scrollY * 0.0001})`,
+            }}
+          />
+        </div>
+      )}
       
       <div className="container mx-auto px-8 text-center relative z-10">
         <motion.div 
@@ -33,7 +41,7 @@ const ContactSection = ({ scrollY, theme, translations }: ContactSectionProps) =
           transition={{ duration: 0.9, ease: 'easeOut' }}
           className="max-w-3xl mx-auto space-y-12"
           style={{
-            transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 4200) * -0.08}px)` : 'none'
+            transform: !isMobile ? `translateY(${(scrollY - 4200) * -0.08}px)` : 'none'
           }}
         >
           <div>

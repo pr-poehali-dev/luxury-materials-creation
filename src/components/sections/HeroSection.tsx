@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
+import { useState, useEffect } from 'react';
 
 interface HeroSectionProps {
   scrollY: number;
@@ -10,13 +11,18 @@ interface HeroSectionProps {
 
 const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionProps) => {
   const t = translations;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 1024);
+  }, []);
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       <div 
         className={theme === 'dark' ? "absolute inset-0 bg-black" : "absolute inset-0 bg-gray-50"}
         style={{
-          transform: window.innerWidth >= 1024 ? `translateY(${scrollY * 0.6}px) scale(${1 + scrollY * 0.0002})` : 'none',
+          transform: !isMobile ? `translateY(${scrollY * 0.6}px) scale(${1 + scrollY * 0.0002})` : 'none',
         }}
       >
         <img
@@ -32,8 +38,8 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
       <div 
         className="relative z-10 text-center px-6 max-w-5xl mx-auto"
         style={{
-          transform: window.innerWidth >= 1024 ? `translateY(${scrollY * 0.25}px) scale(${1 - scrollY * 0.0001})` : 'none',
-          opacity: window.innerWidth >= 1024 ? Math.max(0, 1 - scrollY / 600) : 1,
+          transform: !isMobile ? `translateY(${scrollY * 0.25}px) scale(${1 - scrollY * 0.0001})` : 'none',
+          opacity: !isMobile ? Math.max(0, 1 - scrollY / 600) : 1,
         }}
       >
         <div className="mb-16 animate-fade-in">
@@ -46,14 +52,14 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
         
         <h2 
           className={`text-[clamp(3rem,10vw,9rem)] leading-[0.85] font-extralight tracking-[0.1em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-12 animate-fade-in`}
-          style={window.innerWidth >= 1024 ? {
+          style={!isMobile ? {
             transform: `perspective(1000px) rotateX(${scrollY * 0.02}deg)`,
             transformStyle: 'preserve-3d'
           } : {}}
         >
           MAISON
           <br />
-          <span className="text-gradient-gold" style={window.innerWidth >= 1024 ? { display: 'inline-block', transform: 'translateZ(30px)' } : {}}>DE PIERRE</span>
+          <span className="text-gradient-gold" style={!isMobile ? { display: 'inline-block', transform: 'translateZ(30px)' } : {}}>DE PIERRE</span>
         </h2>
 
         <p className={`text-base tracking-[0.2em] ${theme === 'dark' ? 'text-foreground/60' : 'text-black/60'} mb-20 max-w-2xl mx-auto font-extralight leading-[1.8] animate-slide-up`}>

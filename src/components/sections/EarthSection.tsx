@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { useState, useEffect } from 'react';
 
 interface EarthSectionProps {
   scrollY: number;
@@ -11,6 +12,12 @@ const EarthSection = ({ scrollY, theme, translations }: EarthSectionProps) => {
   const t = translations;
   const { ref: contentRef, isVisible: contentVisible } = useScrollReveal({ threshold: 0.2 });
   const { ref: earthRef, isVisible: earthVisible } = useScrollReveal({ threshold: 0.2 });
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 1024);
+  }, []);
+  
   const sectionStart = 1800;
   const sectionEnd = 2800;
   const progress = Math.max(0, Math.min(1, (scrollY - sectionStart) / (sectionEnd - sectionStart)));
@@ -29,14 +36,16 @@ const EarthSection = ({ scrollY, theme, translations }: EarthSectionProps) => {
       <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-background to-transparent pointer-events-none z-20" />
       <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-background to-transparent pointer-events-none z-20" />
       
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500 rounded-full blur-[200px]"
-          style={{
-            opacity: progress * 0.3
-          }}
-        />
-      </div>
+      {!isMobile && (
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500 rounded-full blur-[200px]"
+            style={{
+              opacity: progress * 0.3
+            }}
+          />
+        </div>
+      )}
 
       <div className="container mx-auto px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
@@ -95,20 +104,22 @@ const EarthSection = ({ scrollY, theme, translations }: EarthSectionProps) => {
               <div 
                 className="relative w-full max-w-[500px] aspect-square"
                 style={{
-                  transform: window.innerWidth >= 1024 
+                  transform: !isMobile 
                     ? `scale(${scale}) rotateY(${rotateY}deg)` 
-                    : `scale(${scale})`,
+                    : 'none',
                   transition: 'transform 0.3s ease-out'
                 }}
               >
-                <div 
-                  className="absolute inset-0 rounded-full"
-                  style={{
-                    background: 'radial-gradient(circle at 30% 30%, rgba(100, 150, 255, 0.3), transparent 70%)',
-                    filter: `blur(60px)`,
-                    opacity: progress * 0.6
-                  }}
-                />
+                {!isMobile && (
+                  <div 
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background: 'radial-gradient(circle at 30% 30%, rgba(100, 150, 255, 0.3), transparent 70%)',
+                      filter: `blur(60px)`,
+                      opacity: progress * 0.6
+                    }}
+                  />
+                )}
                 
                 <div 
                   className="relative w-full h-full rounded-full overflow-hidden"
@@ -123,7 +134,7 @@ const EarthSection = ({ scrollY, theme, translations }: EarthSectionProps) => {
                     alt="Planet Earth"
                     className="w-full h-full object-cover"
                     style={{
-                      transform: window.innerWidth >= 1024 ? `rotate(${scrollY * 0.05}deg)` : 'none'
+                      transform: !isMobile ? `rotate(${scrollY * 0.05}deg)` : 'none'
                     }}
                   />
                   
@@ -142,13 +153,15 @@ const EarthSection = ({ scrollY, theme, translations }: EarthSectionProps) => {
                   }}
                 />
 
-                <div 
-                  className="absolute -inset-20 rounded-full border border-accent/5 pointer-events-none"
-                  style={{
-                    opacity: progress * 0.5,
-                    transform: `rotate(${scrollY * 0.02}deg)`
-                  }}
-                />
+                {!isMobile && (
+                  <div 
+                    className="absolute -inset-20 rounded-full border border-accent/5 pointer-events-none"
+                    style={{
+                      opacity: progress * 0.5,
+                      transform: `rotate(${scrollY * 0.02}deg)`
+                    }}
+                  />
+                )}
               </div>
             </motion.div>
           </div>

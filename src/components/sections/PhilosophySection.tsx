@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { useState, useEffect } from 'react';
 
 interface PhilosophySectionProps {
   scrollY: number;
@@ -14,6 +15,11 @@ const PhilosophySection = ({ scrollY, theme, translations }: PhilosophySectionPr
   const { ref: desc2Ref, isVisible: desc2Visible } = useScrollReveal({ threshold: 0.3 });
   const { ref: desc3Ref, isVisible: desc3Visible } = useScrollReveal({ threshold: 0.3 });
   const { ref: statsRef, isVisible: statsVisible } = useScrollReveal({ threshold: 0.4 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 1024);
+  }, []);
 
   return (
     <section className={`py-48 ${theme === 'dark' ? 'bg-gradient-to-b from-background via-secondary/20 to-background' : 'bg-gradient-to-b from-white via-gray-50 to-white'} relative overflow-hidden`}>
@@ -43,7 +49,7 @@ const PhilosophySection = ({ scrollY, theme, translations }: PhilosophySectionPr
           <div 
             className="space-y-12 text-center"
             style={{
-              transform: window.innerWidth >= 1024 ? `translateY(${(scrollY - 900) * -0.1}px)` : 'none'
+              transform: !isMobile ? `translateY(${(scrollY - 900) * -0.1}px)` : 'none'
             }}
           >
             <motion.div
@@ -58,9 +64,9 @@ const PhilosophySection = ({ scrollY, theme, translations }: PhilosophySectionPr
               <h3 
                 className={`text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] font-extralight tracking-[0.03em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-12`}
               >
-                <span className="lg:inline-block" style={window.innerWidth >= 1024 ? { display: 'inline-block', transform: 'translateZ(10px)' } : {}}>{t.title1}</span>
+                <span className="lg:inline-block" style={!isMobile ? { display: 'inline-block', transform: 'translateZ(10px)' } : {}}>{t.title1}</span>
                 <br />
-                <span className="text-gradient-gold lg:inline-block" style={window.innerWidth >= 1024 ? { display: 'inline-block', transform: 'translateZ(40px)' } : {}}>{t.title2}</span>
+                <span className="text-gradient-gold lg:inline-block" style={!isMobile ? { display: 'inline-block', transform: 'translateZ(40px)' } : {}}>{t.title2}</span>
               </h3>
             </motion.div>
 
@@ -112,7 +118,7 @@ const PhilosophySection = ({ scrollY, theme, translations }: PhilosophySectionPr
                 >
                   <div 
                     className="text-6xl font-extralight text-accent/90 mb-4 lg:group-hover:scale-105 transition-all duration-1000 lg:group-hover:drop-shadow-[0_0_30px_rgba(201,169,97,0.4)]"
-                    style={window.innerWidth >= 1024 ? {
+                    style={!isMobile ? {
                       transform: 'translateZ(30px)',
                       transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)'
                     } : {}}

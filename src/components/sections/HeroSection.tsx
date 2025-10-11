@@ -59,13 +59,15 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
         </div>
         
         <h2 
-          className={`text-[clamp(2.5rem,8vw,7rem)] leading-[1.1] font-light tracking-[0.08em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-8 animate-fade-in`}
+          className={`text-[clamp(2.5rem,8vw,7rem)] leading-[1.1] font-extralight tracking-[0.12em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-8 animate-fade-in`}
           style={!isMobile ? {
             transform: `perspective(1000px) rotateX(${scrollY * 0.02}deg)`,
             transformStyle: 'preserve-3d'
           } : {}}
         >
-          {t.title}
+          MAISON
+          <br />
+          <span className="text-gradient-gold" style={!isMobile ? { display: 'inline-block', transform: 'translateZ(30px)' } : {}}>DE PIERRE</span>
         </h2>
 
         <p className={`text-base tracking-[0.2em] ${theme === 'dark' ? 'text-foreground/60' : 'text-black/60'} mb-20 max-w-2xl mx-auto font-extralight leading-[1.8] animate-slide-up`}>

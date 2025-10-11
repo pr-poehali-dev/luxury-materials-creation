@@ -51,7 +51,7 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
           <img 
             src="https://cdn.poehali.dev/files/26b1b23b-db8d-4ab7-a7f4-957af803b57a.png" 
             alt="Turtle Logo" 
-            className="w-32 h-32 md:w-48 md:h-48 object-contain opacity-90 hover:opacity-100 transition-all duration-700 hover:scale-110"
+            className="w-32 h-32 md:w-48 md:h-48 object-contain opacity-90 hover:opacity-100 transition-all duration-700 hover:scale-110 rounded-0 px-[1px]"
             style={!isMobile ? {
               filter: 'drop-shadow(0 0 40px rgba(201,169,97,0.3))'
             } : {}}

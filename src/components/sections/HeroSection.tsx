@@ -41,32 +41,22 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
       <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-secondary/60 to-transparent pointer-events-none z-20" />
 
       <div 
-        className="fixed right-0 top-1/2 -translate-y-1/2 z-30 pointer-events-none"
-        style={{
-          transform: !isMobile 
-            ? `translateY(-50%) translateX(${Math.min(0, (scrollY - 200) * 0.8)}px) rotate(${scrollY * 0.05}deg)`
-            : 'translateY(-50%)',
-          opacity: !isMobile ? Math.max(0, 1 - scrollY / 400) : 1,
-        }}
-      >
-        <img 
-          src="https://cdn.poehali.dev/files/26b1b23b-db8d-4ab7-a7f4-957af803b57a.png" 
-          alt="Turtle Decoration" 
-          className="w-[400px] h-[400px] md:w-[600px] md:h-[600px] object-contain opacity-30"
-          style={{
-            filter: 'drop-shadow(0 0 80px rgba(201,169,97,0.4))'
-          }}
-        />
-      </div>
-
-      <div 
         className="relative z-10 text-center px-6 max-w-5xl mx-auto"
         style={{
           transform: !isMobile ? `translateY(${scrollY * 0.25}px) scale(${1 - scrollY * 0.0001})` : 'none',
           opacity: !isMobile ? Math.max(0, 1 - scrollY / 600) : 1,
         }}
       >
-
+        <div className="-mb-2 animate-fade-in flex justify-center items-center">
+          <img 
+            src="https://cdn.poehali.dev/files/26b1b23b-db8d-4ab7-a7f4-957af803b57a.png" 
+            alt="Turtle Logo" 
+            className="w-24 h-24 md:w-36 md:h-36 object-contain opacity-90 hover:opacity-100 transition-all duration-700 hover:scale-110"
+            style={!isMobile ? {
+              filter: 'drop-shadow(0 0 40px rgba(201,169,97,0.3))'
+            } : {}}
+          />
+        </div>
         
         <h2 
           className={`text-[clamp(2.5rem,8vw,7rem)] leading-[1.1] font-extralight tracking-[0.12em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-8 animate-fade-in`}

@@ -5,7 +5,12 @@ import { useState, useEffect } from 'react';
 interface HeroSectionProps {
   scrollY: number;
   theme: 'dark' | 'light';
-  translations: any;
+  translations: {
+    title: string;
+    subtitle: string;
+    explore: string;
+    discover: string;
+  };
   onNavigate: (section: 'philosophy' | 'collections') => void;
 }
 
@@ -42,24 +47,25 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
           opacity: !isMobile ? Math.max(0, 1 - scrollY / 600) : 1,
         }}
       >
-        <div className="mb-16 animate-fade-in">
-          <div className="inline-block">
-            <div className="text-[9px] tracking-[0.5em] text-accent/70 mb-6 uppercase font-extralight luxury-line">
-              Depuis 1999
-            </div>
-          </div>
+        <div className="mb-20 animate-fade-in flex justify-center items-center">
+          <img 
+            src="https://cdn.poehali.dev/files/26b1b23b-db8d-4ab7-a7f4-957af803b57a.png" 
+            alt="Turtle Logo" 
+            className="w-32 h-32 md:w-48 md:h-48 object-contain opacity-90 hover:opacity-100 transition-all duration-700 hover:scale-110"
+            style={!isMobile ? {
+              filter: 'drop-shadow(0 0 40px rgba(201,169,97,0.3))'
+            } : {}}
+          />
         </div>
         
         <h2 
-          className={`text-[clamp(3rem,10vw,9rem)] leading-[0.85] font-extralight tracking-[0.1em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-12 animate-fade-in`}
+          className={`text-[clamp(2.5rem,8vw,7rem)] leading-[1.1] font-light tracking-[0.08em] ${theme === 'dark' ? 'text-foreground' : 'text-black'} mb-8 animate-fade-in`}
           style={!isMobile ? {
             transform: `perspective(1000px) rotateX(${scrollY * 0.02}deg)`,
             transformStyle: 'preserve-3d'
           } : {}}
         >
-          MAISON
-          <br />
-          <span className="text-gradient-gold" style={!isMobile ? { display: 'inline-block', transform: 'translateZ(30px)' } : {}}>DE PIERRE</span>
+          {t.title}
         </h2>
 
         <p className={`text-base tracking-[0.2em] ${theme === 'dark' ? 'text-foreground/60' : 'text-black/60'} mb-20 max-w-2xl mx-auto font-extralight leading-[1.8] animate-slide-up`}>

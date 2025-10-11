@@ -13,6 +13,7 @@ export const translations = {
       ]
     },
     hero: {
+      title: "Timeless Beauty",
       subtitle: "Where architectural excellence meets timeless innovation",
       explore: "Explore",
       discover: "Discover"
@@ -90,6 +91,7 @@ export const translations = {
       ]
     },
     hero: {
+      title: "Вечная Красота",
       subtitle: "Где архитектурное совершенство встречается с вечными инновациями",
       explore: "Исследовать",
       discover: "Открыть"

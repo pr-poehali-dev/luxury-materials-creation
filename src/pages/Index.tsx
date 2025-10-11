@@ -12,7 +12,7 @@ import { translations } from "@/data/translations";
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
   const [scrollY, setScrollY] = useState(0);
-  const [language, setLanguage] = useState<'en' | 'ru'>('en');
+  const [language, setLanguage] = useState<'en' | 'ru'>('ru');
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   
   const heroRef = useRef<HTMLElement>(null);

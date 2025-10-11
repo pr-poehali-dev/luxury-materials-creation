@@ -47,11 +47,11 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
           opacity: !isMobile ? Math.max(0, 1 - scrollY / 600) : 1,
         }}
       >
-        <div className="mb-20 animate-fade-in flex justify-center items-center">
+        <div className="mb-8 animate-fade-in flex justify-center items-center">
           <img 
             src="https://cdn.poehali.dev/files/26b1b23b-db8d-4ab7-a7f4-957af803b57a.png" 
             alt="Turtle Logo" 
-            className="w-32 h-32 md:w-48 md:h-48 object-contain opacity-90 hover:opacity-100 transition-all duration-700 hover:scale-110 rounded-0 px-[1px]"
+            className="w-24 h-24 md:w-36 md:h-36 object-contain opacity-90 hover:opacity-100 transition-all duration-700 hover:scale-110"
             style={!isMobile ? {
               filter: 'drop-shadow(0 0 40px rgba(201,169,97,0.3))'
             } : {}}

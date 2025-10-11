@@ -47,7 +47,7 @@ const HeroSection = ({ scrollY, theme, translations, onNavigate }: HeroSectionPr
           opacity: !isMobile ? Math.max(0, 1 - scrollY / 600) : 1,
         }}
       >
-        <div className="mb-8 animate-fade-in flex justify-center items-center">
+        <div className="mb-3 animate-fade-in flex justify-center items-center">
           <img 
             src="https://cdn.poehali.dev/files/26b1b23b-db8d-4ab7-a7f4-957af803b57a.png" 
             alt="Turtle Logo" 
